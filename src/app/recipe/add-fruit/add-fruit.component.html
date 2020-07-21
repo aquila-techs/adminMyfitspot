@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="col-md-4">
+        <form #myForm="ngForm">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control radius margin" [(ngModel)]="fruit.nameEn" id="nameEn" placeholder="English" name="nameEn" aria-describedby="nameEn" >
+                <input type="text" class="form-control radius" [(ngModel)]="fruit.nameNl" id="nameNl" placeholder="Dutch" name="nameNl" aria-describedby="nameNl" >
+            </div>
+            <div class="form-group">
+                <label>Value</label>
+                <input type="text" class="form-control radius" id="value" [(ngModel)]="fruit.value"  name="value" aria-describedby="value" >
+                <small class="text-muted">The “value" is the value of 1 gram of fruit is equal to how many "KCal".</small>
+            </div>
+            <div class="form-group m-t-10">
+                <button type="button" class="btn btn-info ml-auto radius" (click)="addFruit(myForm)" >Add New Fruit</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8">
+        <div class="scrollable table-responsive" style="height:500px;" [perfectScrollbar]="config">
+            <table class="table table-hover text-center">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let f of fruits; let i=index">
+                      <td>{{ f?.nameEn }}</td>
+                      <td>{{f?.value }}</td>          
+                      <td>
+                        <i class="ti-pencil text-info m-r-10 pointer" (click)="update(edit,i)"></i>
+                        <i class="ti-trash text-danger pointer" (click)="deletefruit(f._id,i)"></i></td>
+                    </tr>
+               </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<ng-template #edit let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Edit Fruit</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input [(ngModel)]="sfruit.nameEn" name="nameEn" type="text" class="form-control margin" id="nameEn" placeholder="English" />
+          <input [(ngModel)]="sfruit.nameNl" name="nameNl" type="text" class="form-control" id="nameNl" placeholder="Dutch" />
+        </div>
+        <div class="form-group">
+            <label>Value</label>
+            <input type="text" class="form-control radius" id="value" [(ngModel)]="sfruit.value"  name="value" aria-describedby="value" >
+            <small class="text-muted">The “value" is the value of 1 gram of vegetable is equal to how many "KCal".</small>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">
+        Close
+      </button>
+      <button (click)="updateFruit()" type="button" class="btn btn-info">
+        Save
+      </button>
+    </div>
+  </ng-template>
