@@ -1,3 +1,6 @@
- .chat-box {
- 	height:475px;
+.comment-widgets {
+	height:560px;
+}
+.pointer{ 
+	cursor:pointer;
 }
