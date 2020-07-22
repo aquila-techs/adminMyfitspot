@@ -1,0 +1,70 @@
+
+<div class="row">
+    <!-- <h4 class="card-title">User Table</h4> -->
+   
+    <div class="col-12 bg-white p-4 users" style="overflow-x: scroll;">
+      <div class="mb-4">
+  
+        <!-- <h4>Search Post</h4> -->
+        <div class="form-row">
+          <!-- <div class="col-md-3">
+            <input  [(ngModel)]="search.firstName" name="UserNameFiltering" type="text" class="form-control"
+              placeholder="Type and Filter By FirstName" />
+          </div>
+          <div class="col-md-3">
+            <input  [(ngModel)]="search.lastName" name="UserNameFiltering" type="text" class="form-control"
+              placeholder="Type and Filter By LastName" />
+          </div>
+          <div class="col-md-3">
+            <input  [(ngModel)]="search.email" name="emailFiltering" type="text" class="form-control"
+              placeholder="Type and Filter By Email" />
+          </div>
+          <div class="col-md-3">
+            <button class="btn btn-info" type="submit" (click)="searchUser()">
+              Search
+            </button>
+          </div> -->
+        </div>
+  
+      </div>
+      <table class="table table-hover text-center">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Categories</th>
+            <th scope="col">Tags</th>
+            <th scope="col">Date</th>
+            <!-- <th scope="col">Action</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of posts; let i=index">
+            <td>{{ p?.title }}</td>
+            <td>{{p?.user?.name }}</td>
+            <td>
+                <span *ngIf="p.categories.length == 0" class="badge badge-pill badge-danger">No Category</span>
+                <span *ngFor="let c of p.categories" class="badge badge-pill badge-success ml-1">{{c?.name}}</span>
+            </td>          
+            <td>
+                <span *ngIf="p.tags.length == 0" class="badge badge-pill badge-danger">No Tag</span>
+                <span *ngFor="let t of p.tags" class="badge badge-pill badge-info ml-1">{{t?.name}}</span>
+            </td>
+            <td>
+              <small> Published </small><br>
+              {{p?.createdAt | date:'shortDate' }}  
+            </td>
+            <!-- <td>
+              <i class="ti-pencil text-info m-r-10 pointer" (click)="updatePost(p._id)"></i>
+              <i (click)="deletePost(p._id,i)" class="ti-trash text-danger pointer"></i>
+            </td> -->
+          </tr>
+     </tbody>
+      </table>
+      <div class="d-flex justify-content-center p-2">
+            <ngb-pagination class="d-flex justify-content-end" (pageChange)="pagination($event)" [pageSize]="numOfItems"
+            [collectionSize]="collSize" [(page)]="page" [maxSize]="6" [boundaryLinks]="true" size="sm">
+            </ngb-pagination>
+      </div>
+
+    </div>

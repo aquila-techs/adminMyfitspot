@@ -11,6 +11,40 @@ export const ROUTES: RouteInfo[] = [
     },
     {
         path: '',
+        title: 'Posts',
+        icon: 'mdi mdi-pin',
+        class: 'has-arrow',
+        extralink: false,
+        submenu: [
+            {
+                        path: '/post/all',
+                        title: 'All Posts',
+                        icon: 'mdi mdi-twitch',
+                        class: '',
+                        extralink: false,
+                        submenu: []
+            },
+            {
+                path: '/post/categories',
+                title: 'Categories',
+                icon: 'mdi mdi-apps',
+                class: '',
+                extralink: false,
+                submenu: []
+            },
+            {
+                path: '/post/tags',
+                title: 'Tags',
+                icon: 'mdi mdi-tag-multiple',
+                class: '',
+                extralink: false,
+                submenu: []
+            }
+
+        ]
+    },
+    {
+        path: '',
         title: 'Recipes',
         icon: 'mdi mdi-food',
         class: 'has-arrow',

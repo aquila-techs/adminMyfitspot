@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control radius" id="categoryname" [(ngModel)] ="category.name" aria-describedby="categoryName" >
+            <small class="text-muted">The name is how it appears on your site.</small>
+        </div>
+        <div class="form-group">
+            <label>Slug</label>
+            <input type="text" class="form-control radius" id="slug" [(ngModel)] ="category.slug" aria-describedby="slug" >
+            <small class="text-muted">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</small>
+        </div>
+        <div class="form-group">
+            <label class="mr-sm-2" for="inlineFormCustomSelect">Parent Category</label>
+            <select class="custom-select mr-sm-2 radius" [(ngModel)] ="parentCategory" id="inlineFormCustomSelect">
+                <option value="">None</option>
+                <option *ngFor="let cat of Categories" value="{{cat._id}}">{{cat.name}}</option>
+            </select>
+            <small class="text-muted">Categories, unlike tags, can have a hierarchy. You might have a Jazz category, and under that have children categories for Bebop and Big Band. Totally optional.</small>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea class="form-control radius" rows="5" [(ngModel)] ="category.description" maxlength="250"></textarea>
+        </div>
+        <div class="form-group m-t-10">
+            <button type="button" class="btn btn-info ml-auto radius" (click)="addCategory()" >Add New Category</button>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="scrollable table-responsive" style="height:600px;" [perfectScrollbar]="config">
+            <table class="table table-hover text-center">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Slug</th>
+                    <th scope="col">Count</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ca of Categories; let i=index">
+                      <td>{{ ca?.name }}</td>
+                      <td>{{ca?.description }}</td>
+                      <td>{{ ca?.slug }}</td>
+                      <td>1</td>          
+                      <td>
+                        <i class="ti-pencil text-info m-r-10 pointer" (click)="updateCategory(ca._id)"></i>
+                        <i class="ti-trash text-danger pointer" (click)="deleteCategory(ca._id,i)" ></i></td>
+                    </tr>
+               </tbody>
+            </table>
+        </div>
+    </div>
+</div>

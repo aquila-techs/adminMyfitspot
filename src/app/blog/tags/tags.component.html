@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-md-4">
+        <form #myForm="ngForm">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control radius" [(ngModel)]="tag.name" id="categoryname" name="name" aria-describedby="categoryName" >
+                <small class="text-muted">The name is how it appears on your site.</small>
+            </div>
+            <div class="form-group">
+                <label>Slug</label>
+                <input type="text" class="form-control radius" id="slug" [(ngModel)]="tag.slug"  name="slug" aria-describedby="slug" >
+                <small class="text-muted">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</small>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-control radius" rows="5" [(ngModel)]="tag.description" name="description"  maxlength="250"></textarea>
+            </div>
+            <div class="form-group m-t-10">
+                <button type="button" class="btn btn-info ml-auto radius" (click)="addTag(myForm)" >Add New Tag</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8">
+        <div class="scrollable table-responsive" style="height:500px;" [perfectScrollbar]="config">
+            <table class="table table-hover text-center">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Slug</th>
+                    <th scope="col">Count</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let t of tags; let i=index">
+                      <td>{{ t?.name }}</td>
+                      <td>{{t?.description }}</td>
+                      <td>{{ t?.slug }}</td>
+                      <td>1</td>          
+                      <td>
+                        <i class="ti-pencil text-info m-r-10 pointer" (click)= "updateTag(t._id)"></i>
+                        <i class="ti-trash text-danger pointer" (click)="deleteTag(t._id,i)" ></i></td>
+                    </tr>
+               </tbody>
+            </table>
+        </div>
+    </div>
+</div>
