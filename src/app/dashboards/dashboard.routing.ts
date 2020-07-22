@@ -10,7 +10,7 @@ export const DashboardRoutes: Routes = [
         path: 'classic',
         component: Dashboard1Component,
         data: {
-          title: "Welcome to Partner's Dashboard",
+          title: "Welcome to Admin Dashboard",
           urls: [
             { title: 'Dashboard', url: '/dashboard' },
             { title: 'Classic Dashboard' }

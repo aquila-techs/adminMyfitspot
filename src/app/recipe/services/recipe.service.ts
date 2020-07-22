@@ -40,4 +40,8 @@ export class RecipeService {
     return this.http.delete("/ingredient/"+param);
   }
 
+  getAllRecipes(body): Observable<any> {
+    return this.http.post("/recipe/get/all/recipes",body);
+  }
+
 }
