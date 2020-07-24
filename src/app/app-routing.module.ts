@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: '',
     component: FullComponent,
-    canActivate:[AuthGuard,AdminGuard,SuperAdminGuard],
+    canActivate:[AuthGuard,AdminGuard],
     children: [
       { path: '', redirectTo: '/dashboard/classic', pathMatch: 'full' },
       {
