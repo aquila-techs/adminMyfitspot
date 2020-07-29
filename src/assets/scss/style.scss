@@ -39,3 +39,70 @@ File: scss
 
 // this is for the perfect scrollbar
 @import '~perfect-scrollbar/css/perfect-scrollbar.css';
+
+
+#navbarSupportedContent{
+  background-color: $darkblack !important;
+  .user-dd{
+    .bg-primary{
+        background-color: $darkblack !important;
+    }
+  }
+}
+
+.breadcrumb-item {
+  a{
+      color:  $apple;
+  }
+}
+
+.navbar-dark {
+  .navbar-nav {
+    .nav-link{
+    color: $white
+    }
+  }
+}
+
+.sidebar-nav {
+  .sidebar-item {
+    a.has-arrow {
+      border-bottom: 1px solid $white;
+    }
+    &:active,
+    &:hover {
+      background-color: $apple;
+      .sidebar-link {
+        i {
+          color: $white !important;
+        }
+        color: $white !important;
+
+        &::after {
+          border-color: $white !important;
+        }
+      }
+    }
+  }
+  .sidebar-item.active {
+    background-color:  $apple;
+    .sidebar-link {
+      &::after {
+          border-color: $white !important;
+        }
+      background-color: $apple;
+        i {
+          color: $white !important;
+        }
+        color: $white !important;
+      }
+  }
+}
+
+.topbar {
+  .navbar-brand{
+    .logo-icon{
+      margin: auto !important;
+    }
+  }
+}
