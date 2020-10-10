@@ -59,7 +59,7 @@
                         <td>{{c?.parentCategory?.name }}</td>
                         <td>{{c?.description }}</td>
                         <td>
-                            <i class="ti-pencil text-info m-r-10 pointer" (click)="updateCategory(edit,i)"></i>
+                            <i class="ti-pencil text-info m-r-10 pointer" (click)="updateCategory('edit',i)"></i>
                             <i class="ti-trash text-danger pointer" (click)="deleteCategory(c._id,i)"></i></td>
                     </tr>
                 </tbody>
