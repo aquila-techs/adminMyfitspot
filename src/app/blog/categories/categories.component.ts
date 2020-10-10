@@ -19,7 +19,6 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.blogSer.getUserCategories().subscribe(res => {
-      console.log(res);
       if (res.status == true) {
         this.Categories = res.data
       }
@@ -29,8 +28,7 @@ export class CategoriesComponent implements OnInit {
   addCategory() {
     if (this.parentCategory !== "") {
       this.category.parentCategory = this.parentCategory
-    }
-    console.log(this.category)    
+    }    
     this.blogSer.creatCategory(this.category).subscribe(res => {
       if (res.status == true) {
         this.ngOnInit()

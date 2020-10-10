@@ -35,6 +35,10 @@ const routes: Routes = [
         path: 'post',
         loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)
       },
+      {
+        path: 'workouts',
+        loadChildren: () => import('./workout/workout.module').then(m => m.WorkoutModule)
+      },
     ]
   },
   {

@@ -13,11 +13,15 @@ export class AdminGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    let user = this.authService.currentUser;
-    if (user && user.type == 'su' ) return true;
-
-    this.rout.navigate(["/login"]);
-    return false;
+      let user = this.authService.currentUser;
+      if (user && (user.type == 'su' || (user.level && user.level.isAdmin ))) {
+        return true;
+      }
+      if (localStorage.getItem('fat')) {
+        localStorage.removeItem('fat');
+      }
+      this.rout.navigate(["/login"]);
+      return false;
 
   }
 

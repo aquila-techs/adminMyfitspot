@@ -1,0 +1,35 @@
+.radius {
+    border-radius: 5px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.margin {
+    margin-bottom: 5px;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.btn1 {
+    /* border: 1px solid gray; */
+    /* color: gray; */
+    background-color: white;
+    /* padding: 8px 20px; */
+    border-radius: 8px;
+    font-size: 16px;
+    /* font-weight: bold; */
+}
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 50px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}

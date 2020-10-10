@@ -22,7 +22,6 @@ export class AddCarbsComponent implements OnInit {
 
   ngOnInit(): void {
     this.recipeS.getAllCarbs().subscribe(res => {
-      console.log(res);
       if (res.status == true) {
         this.carbs = res.data        
       }
@@ -30,7 +29,6 @@ export class AddCarbsComponent implements OnInit {
   }
 
   addCarb(form:NgForm) {
-    console.log(this.carb)    
     this.recipeS.createIngredient(this.carb).subscribe(res => {
       if (res.status == true) {
         this.ngOnInit();
@@ -60,9 +58,7 @@ export class AddCarbsComponent implements OnInit {
   }
 
   deleteCarb(carbId,i) {
-    console.log(carbId)
     this.recipeS.deleteIngredient(carbId).subscribe(res => {
-      console.log(res)
       if (res.status === true) {
         this.carbs.splice(i, 1);
         this.toastr.success("Carb Deleted!", 'Success!', {timeOut: 3000,closeButton: true,progressBar:true,progressAnimation:'decreasing'});
