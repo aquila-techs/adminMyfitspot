@@ -141,6 +141,23 @@ export const ROUTES: RouteInfo[] = [
             }
         ]
     },
+    {
+        path: '',
+        title: 'Product',
+        icon: 'mdi mdi-food-variant',
+        class: 'has-arrow', //has-arrow 
+        extralink: false,
+        submenu: [
+            {
+                path: '/product',
+                title: 'Add Product',
+                icon: 'mdi mdi-adjust',
+                class: '',
+                extralink: false,
+                submenu: []
+            }
+        ]
+    },
     // {
     //     path: '/profile',
     //     title: 'Profile',

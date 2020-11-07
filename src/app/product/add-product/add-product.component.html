@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-md-4">
+        <form #myForm="ngForm">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control radius margin" [(ngModel)]="product.nameEn" id="nameEn" placeholder="English" name="nameEn" aria-describedby="nameEn">
+                <input type="text" class="form-control radius" [(ngModel)]="product.nameNl" id="nameNl" placeholder="Dutch" name="nameNl" aria-describedby="nameNl">
+            </div>
+            <div class="form-group">
+                <label>Value</label>
+                <input type="text" class="form-control radius" id="value" [(ngModel)]="product.calories" name="value" aria-describedby="value">
+            </div>
+            <div class="form-group m-t-10">
+                <button type="button" class="btn cus-btns ml-auto radius" (click)="addProduct(myForm)">Add New Product</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8">
+        <div class="scrollable table-responsive" style="height:500px;" [perfectScrollbar]="config">
+            <table class="table table-hover text-center">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Calories</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let c of products; let i=index">
+                        <td>{{ c?.nameEn }}</td>
+                        <td>{{c?.calories }}</td>
+                        <td>
+                            <i class="ti-pencil text-info m-r-10 pointer" (click)="update(edit,i)"></i>
+                            <i class="ti-trash text-danger pointer" (click)="deleteProduct(c._id,i)"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #edit let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Edit Product</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input [(ngModel)]="sproduct.nameEn" name="nameEn" type="text" class="form-control margin" id="nameEn" placeholder="English" />
+                <input [(ngModel)]="sproduct.nameNl" name="nameNl" type="text" class="form-control" id="nameNl" placeholder="Dutch" />
+            </div>
+            <div class="form-group">
+                <label>Value</label>
+                <input type="text" class="form-control radius" id="value" [(ngModel)]="sproduct.calories" name="value" aria-describedby="value">
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">
+        Close
+      </button>
+        <button (click)="updateProduct()" type="button" class="btn btn-info">
+        Save
+      </button>
+    </div>
+</ng-template>
