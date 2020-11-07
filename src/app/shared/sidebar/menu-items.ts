@@ -116,8 +116,24 @@ export const ROUTES: RouteInfo[] = [
         extralink: false,
         submenu: [
             {
-                path: '/workouts/addWorkout',
-                title: 'Add WorkOut',
+                path: '/workout/all',
+                title: 'All Workouts',
+                icon: 'mdi mdi-adjust',
+                class: '',
+                extralink: false,
+                submenu: []
+            },
+            {
+                path: '/workout/addworkout',
+                title: 'Add Workout',
+                icon: 'mdi mdi-adjust',
+                class: '',
+                extralink: false,
+                submenu: []
+            },
+            {
+                path: '/workout/addWorkout',
+                title: 'Add WorkOut Category',
                 icon: 'mdi mdi-adjust',
                 class: '',
                 extralink: false,

@@ -14,6 +14,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { AccordionModule } from '@syncfusion/ej2-angular-navigations';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -65,6 +66,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     Ng2SearchPipeModule,
     RouterModule,
     PerfectScrollbarModule,
+    AccordionModule,
     NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [
