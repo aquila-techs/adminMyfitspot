@@ -26,6 +26,11 @@
         "@ng-bootstrap/ng-bootstrap": "^5.3.0",
         "@swimlane/ngx-charts": "^12.0.0",
         "@swimlane/ngx-datatable": "^16.0.3",
+        "@syncfusion/ej2-angular-base": "^18.1.52",
+        "@syncfusion/ej2-angular-navigations": "^18.1.54",
+        "@syncfusion/ej2-base": "^18.1.53",
+        "@syncfusion/ej2-dropdowns": "^18.2.46",
+        "@syncfusion/ej2-navigations": "^18.1.54",
         "angular-calendar": "^0.28.2",
         "angular-datatables": "^8.0.0",
         "angular-notifier": "^6.0.1",
@@ -42,6 +47,7 @@
         "jquery": "^3.4.1",
         "lodash": "^4.17.15",
         "ng-chartist": "^4.1.0",
+        "ng-http-loader": "^8.0.0",
         "ng-multiselect-dropdown": "^0.2.10",
         "ng2-archwizard": "^2.1.0",
         "ng2-charts": "^2.3.0",
@@ -60,12 +66,7 @@
         "rxjs-compat": "^6.5.4",
         "sass": "^1.25.0",
         "tslib": "^1.10.0",
-        "zone.js": "~0.10.2",
-        "@syncfusion/ej2-angular-base": "^18.1.52",
-        "@syncfusion/ej2-angular-navigations": "^18.1.54",
-        "@syncfusion/ej2-base": "^18.1.53",
-        "@syncfusion/ej2-dropdowns": "^18.2.46",
-        "@syncfusion/ej2-navigations": "^18.1.54"
+        "zone.js": "~0.10.2"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "~0.900.2",

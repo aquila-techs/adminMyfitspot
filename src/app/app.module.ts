@@ -15,7 +15,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { AccordionModule } from '@syncfusion/ej2-angular-navigations';
-
+import { NgHttpLoaderModule } from 'ng-http-loader';
 import { AppRoutingModule } from './app-routing.module';
 
 
@@ -62,6 +62,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ReactiveFormsModule,
     DataTablesModule,
     HttpClientModule,
+    NgHttpLoaderModule.forRoot(),
     NgbModule,
     Ng2SearchPipeModule,
     RouterModule,
