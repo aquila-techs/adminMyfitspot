@@ -16,6 +16,7 @@ export class WorkoutComponent implements OnInit {
   workoutCategories = { name: "", slug: "", description: "" } as any;
   parentCategory = "";
   categories;
+  sCategory;
 
   fileName;
   file;
@@ -30,7 +31,6 @@ export class WorkoutComponent implements OnInit {
     this.workoutS.getAllCategories().subscribe(res => {
       if (res.status === true) {
         this.categories = res.data
-        console.log(this.categories)
       }
     });
   }
@@ -52,12 +52,34 @@ export class WorkoutComponent implements OnInit {
       }
     })
   }
-  updateCategory(edit, i) {
+  updateCategory() {
+    this.workoutS.updateWorkoutCategories(this.sCategory._id, this.sCategory).subscribe(res => {
+      if (res.status == true) {
+        this.modalService.dismissAll();
+        this.ngOnInit();
+        this.toastr.success("Category Updated!", 'Success!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
+      } else {
+        this.toastr.error(res.message, 'Oops!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
+      }
+    })
+  }
 
+  editCategory(edit, i) {
+    this.sCategory = this.categories[i];
+    this.modalService.open(edit, { ariaLabelledBy: 'modal-basic-title', centered: true, windowClass: "dark-modal" });
   }
 
   deleteCategory(id, i) {
-
+    if (confirm('Are you sure you want to delete the product?')) {
+      this.workoutS.deleteWorkoutCategories(id).subscribe(res => {
+        if (res.status === true) {
+          this.categories.splice(i, 1);
+          this.toastr.success("Workout Category Deleted!", 'Success!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
+        } else {
+          this.toastr.error(res.message, 'Oops!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
+        }
+      })
+    } 
   }
 
   onChange(file: File) {

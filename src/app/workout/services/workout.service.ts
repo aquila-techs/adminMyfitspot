@@ -26,6 +26,14 @@ export class WorkoutService {
     return this.http.get("/workout/categories/get/all");
   }
 
+  deleteWorkoutCategories(param): Observable<any> {
+    return this.http.delete("/workout/categories/delete/"+param);
+  }
+
+  updateWorkoutCategories(param,body): Observable<any> {
+    return this.http.put("/workout/categories/update/"+param,body);
+  }
+  
   createWorkout(body, file: File): Observable<any> {
 
     let formData = new FormData();

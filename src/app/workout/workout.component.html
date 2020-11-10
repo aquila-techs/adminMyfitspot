@@ -59,7 +59,7 @@
                         <td>{{c?.parentCategory?.name }}</td>
                         <td>{{c?.description }}</td>
                         <td>
-                            <i class="ti-pencil text-info m-r-10 pointer" (click)="updateCategory('edit',i)"></i>
+                            <i class="ti-pencil text-info m-r-10 pointer" (click)="editCategory(edit,i)"></i>
                             <i class="ti-trash text-danger pointer" (click)="deleteCategory(c._id,i)"></i></td>
                     </tr>
                 </tbody>
@@ -69,33 +69,38 @@
 </div>
 
 
-<!-- <ng-template #edit let-modal>
+<ng-template #edit let-modal>
     <div class="modal-header">
-      <h4 class="modal-title">Edit Carb</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <h4 class="modal-title">Edit Category</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <form>
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input [(ngModel)]="sCarb.nameEn" name="nameEn" type="text" class="form-control margin" id="nameEn" placeholder="English" />
-          <input [(ngModel)]="sCarb.nameNl" name="nameNl" type="text" class="form-control" id="nameNl" placeholder="Dutch" />
-        </div>
-        <div class="form-group">
-            <label>Value</label>
-            <input type="text" class="form-control radius" id="value" [(ngModel)]="sCarb.value"  name="value" aria-describedby="value" >
-            <small class="text-muted">The “value" is the value of 1 gram of vegetable is equal to how many "KCal".</small>
-        </div>
-      </form>
+        <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input [(ngModel)]="sCategory.name  " name="name" type="text" class="form-control margin" id="name" placeholder="Name" />
+            </div>
+            <div class="form-group">
+                <label for="slug">Description</label>
+                <input [(ngModel)]="sCategory.description" name="name" type="text" class="form-control margin" id="name" placeholder="Description" />
+            </div>
+            <div class="form-group">
+                <label class="mr-sm-2" for="inlineFormCustomSelect">Parent Category</label>
+                <select class="custom-select mr-sm-2 radius" [(ngModel)]="sCategory.parentCategory" id="inlineFormCustomSelect" name="parentCategory">
+                    <option value="">None</option>
+                    <option *ngFor="let cat of categories" value="{{cat._id}}">{{cat.name}}</option>
+                </select>
+            </div>
+        </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">
         Close
       </button>
-      <button (click)="updateCarb()" type="button" class="btn btn-info">
+        <button (click)="updateCategory()" type="button" class="btn btn-info">
         Save
       </button>
     </div>
-  </ng-template> -->
+</ng-template>
