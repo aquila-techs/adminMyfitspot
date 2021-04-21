@@ -3,13 +3,13 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label>Add New WorkOut</label>
+                    <label>Modify WorkOut</label>
                     <input type="text" class="form-control radius margin" [(ngModel)]="workout.nameEn" id="nameEn" aria-describedby="nameEn" placeholder="Name Of workout(EN)">
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label class="invisible d-sm-block d-none">Add New WorkOut</label>
+                    <label class="invisible d-sm-block d-none">Modify WorkOut</label>
                     <input type="text" class="form-control radius" [(ngModel)]="workout.nameNl" id="nameNl" aria-describedby="nameNl" placeholder="Name Of workout(NL)">
                 </div>
             </div>
@@ -72,7 +72,7 @@
                                     <i class="ti-trash text-danger pointer" (click)="deleteTimeline(i)"></i>
                                 </td>
                             </tr>
-                            <tr *ngIf="workout.timeLines.length == 0">
+                            <tr *ngIf="workout.timeLines?.length == 0">
                                 <td style="text-align: center;color:red">No Record Found</td>
                             </tr>
                         </tbody>
@@ -84,7 +84,7 @@
     </div>
     <div class="col-md-3">
         <div class="form-group m-t-30 justify-content-end">
-            <button type="button" class="btn cus-btns  w-100 radius" (click)="Addworkout()">Publish</button>
+            <button type="button" class="btn cus-btns  w-100 radius" (click)="Addworkout()">Modify</button>
         </div>
         <!-- Categories -->
         <div class="m-t-10">
@@ -100,7 +100,7 @@
                                     <li class="list-group-item todo-item" *ngFor="let m of categories" data-role="task">
                                         <div class="form-check form-check-inline">
                                             <div class="custom-control custom-checkbox">
-                                                <input (click)="addCategory(m)" name="block" class="custom-control-input" id="'b-'{{m}}" type="checkbox" />
+                                                <input (click)="addCategory(m)" name="block" class="custom-control-input" id="'b-'{{m}}" type="checkbox"/>
                                                 <label class="custom-control-label" for="'b-'{{m}}">{{m}}</label>
                                             </div>
                                         </div>
@@ -152,23 +152,12 @@
                             <div>Equipment</div>
                         </ng-template>
                         <ng-template #content>
-                            <!-- <div class="todo-widget scrollable" style="height:200px;" [perfectScrollbar]="config">
-                                <ul class="list-task todo-list list-group m-b-0" data-role="diffculity">
-                                    <li class="list-group-item todo-item" *ngFor="let m of diffculity" data-role="task">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="'d-'{{m}}" name="difficulity" value="{{m}}" [(ngModel)]="workout.difficulityLevel" mdbInput>
-                                            <label class="custom-control-label" for="'d-'{{m}}">{{m}}</label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div> -->
-                            
                             <div class="todo-widget scrollable" style="height: 16em;text-align: left;" [perfectScrollbar]="config">
                                 <ul class="list-task todo-list list-group m-b-0" data-role="diffculity">
                                     <li class="list-group-item todo-item" *ngFor="let m of diffculity" data-role="task">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="'d-'{{m}}" name="difficulity" value="{{m}}" [(ngModel)]="workout.difficulityLevel" mdbInput>
-                                            <label class="custom-control-label" for="'d-'{{m}}">{{m}}</label>
+                                            <input type="radio" class="custom-control-input" id="'c-'{{m}}" name="difficulity" value="{{m}}" [(ngModel)]="workout.difficulityLevel" mdbInput>
+                                            <label class="custom-control-label" for="'c-'{{m}}">{{m}}</label>
                                         </div>
                                     </li>
                                 </ul>

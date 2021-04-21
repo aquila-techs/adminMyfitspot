@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { NgForm } from '@angular/forms';
 import { WorkoutService } from './services/workout.service';
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -13,8 +13,8 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 })
 export class WorkoutComponent implements OnInit {
 
-  workoutCategories = { name: "", slug: "", description: "" } as any;
-  parentCategory = "";
+  workoutCategories = { name: "", slug: "", description: "", categoryType: "" } as any;
+  // parentCategory = "";
   categories;
   sCategory;
 
@@ -24,21 +24,27 @@ export class WorkoutComponent implements OnInit {
 
   public config: PerfectScrollbarConfigInterface = {};
   constructor(private modalService: NgbModal, private toastr: ToastrService,
-    private router: Router, private workoutS: WorkoutService) { }
+    private router: Router, private workoutS: WorkoutService, private activatedRoute: ActivatedRoute) {
+    this.workoutCategories.categoryType  = this.activatedRoute.snapshot.url[0].path
+     }
 
 
   ngOnInit(): void {
-    this.workoutS.getAllCategories().subscribe(res => {
+    this.workoutS.getAllCategories(this.workoutCategories.categoryType).subscribe(res => {
       if (res.status === true) {
+        res.data.forEach((element,index) => {
+          res.data[index].name = res.data[index].name == 'null' ? '' : res.data[index].name;
+          res.data[index].description = res.data[index].description == 'null' ? '' : res.data[index].description;
+        });
         this.categories = res.data
       }
     });
   }
 
   addCategory(form: NgForm) {
-    if (this.parentCategory !== "") {
-      this.workoutCategories.parentCategory = this.parentCategory
-    }
+    // if (this.parentCategory !== "") {
+    //   this.workoutCategories.parentCategory = this.parentCategory
+    // }
     this.workoutS.createWorkOutCategory(this.workoutCategories, this.file).subscribe(res => {
       if (res.status == true) {
         this.ngOnInit();

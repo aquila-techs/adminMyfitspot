@@ -13,13 +13,13 @@
                 <label>Description</label>
                 <textarea type="text" class="form-control radius" id="value" [(ngModel)]="workoutCategories.description" name="description" aria-describedby="descirption"></textarea>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label class="mr-sm-2" for="inlineFormCustomSelect">Parent Category</label>
                 <select class="custom-select mr-sm-2 radius" [(ngModel)]="parentCategory" id="inlineFormCustomSelect" name="parentCategory">
                     <option value="">None</option>
                     <option *ngFor="let cat of categories" value="{{cat._id}}">{{cat.name}}</option>
                 </select>
-            </div>
+            </div> -->
             <div class="form-group">
                 <div class="upload-btn-wrapper pointer">
                     <button style="padding: 0; border: 0; background: transparent;" class="btn1">
@@ -43,22 +43,22 @@
         </form>
     </div>
     <div class="col-md-8">
-        <div class="scrollable table-responsive" style="height:500px;" [perfectScrollbar]="config">
+        <div class="scrollable table-responsive" style="height:50em;" [perfectScrollbar]="config">
             <table class="table table-hover text-center">
                 <thead class="thead-light">
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Parent Category</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Action</th>
+                    <tr class="sticky-header">
+                        <th class="sticky-header" style="text-align:left" scope="col">Name</th>
+                        <!-- <th class="sticky-header" scope="col">Parent Category</th> -->
+                        <th class="sticky-header"  style="text-align:left"scope="col">Description</th>
+                        <th class="sticky-header" scope="col" style="text-align:left">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let c of categories; let i=index">
-                        <td>{{ c?.name }}</td>
-                        <td>{{c?.parentCategory?.name }}</td>
-                        <td>{{c?.description }}</td>
-                        <td>
+                        <td style="text-align:left;width: 40%">{{ c?.name }}</td>
+                        <!-- <td>{{c?.parentCategory?.name }}</td> -->
+                        <td style="text-align:left;width: 40%">{{c?.description }}</td>
+                        <td style="text-align:left;width: 20%">
                             <i class="ti-pencil text-info m-r-10 pointer" (click)="editCategory(edit,i)"></i>
                             <i class="ti-trash text-danger pointer" (click)="deleteCategory(c._id,i)"></i></td>
                     </tr>
@@ -80,19 +80,36 @@
         <form>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input [(ngModel)]="sCategory.name  " name="name" type="text" class="form-control margin" id="name" placeholder="Name" />
+                <input [(ngModel)]="sCategory.name" name="name" type="text" class="form-control margin" id="name" placeholder="Name" />
             </div>
             <div class="form-group">
                 <label for="slug">Description</label>
-                <input [(ngModel)]="sCategory.description" name="name" type="text" class="form-control margin" id="name" placeholder="Description" />
+                <input [(ngModel)]="sCategory.description" name="description" type="text" class="form-control margin" id="description" placeholder="Description" />
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
+                <div class="upload-btn-wrapper pointer">
+                    <button style="padding: 0; border: 0; background: transparent;" class="btn1">
+                        <div
+                            style="flex-direction: column; border: 2px dashed #999; background-color: transparent; width: 200px; height: 100px; display: flex; justify-content: center; align-items: center;">
+                            <span *ngIf="fileUrl"
+                                style="opacity: 0.7; z-index: 1; position: absolute; top: 0; bottom: 0; left: 0; right: 0"
+                                 width="300" height="200">{{sCategory.video}}</span>
+                                
+                                <i *ngIf="!fileUrl" style="z-index: 2; color: #444;"
+                                    class="fa fa-upload pointer"></i>
+                                    <span *ngIf="!fileUrl" style="z-index: 2; color: #444; font-weight: 20px;" class="text-muted">Upload Video</span>
+                              </div>
+                    </button>
+                    <input type="file" name="banner" #fileInput (change)="onChange(fileInput.files[0])" class="custom-file-input" id="banner" name="video">
+                </div>
+            </div> -->
+            <!-- <div class="form-group">
                 <label class="mr-sm-2" for="inlineFormCustomSelect">Parent Category</label>
                 <select class="custom-select mr-sm-2 radius" [(ngModel)]="sCategory.parentCategory" id="inlineFormCustomSelect" name="parentCategory">
                     <option value="">None</option>
                     <option *ngFor="let cat of categories" value="{{cat._id}}">{{cat.name}}</option>
                 </select>
-            </div>
+            </div> -->
         </form>
     </div>
     <div class="modal-footer">

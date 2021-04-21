@@ -12,11 +12,11 @@ import { Subscription } from 'rxjs';
 import { SharedService } from '../services/shared.service';
 
 @Component({
-  selector: 'app-add-workout',
-  templateUrl: './add-workout.component.html',
-  styleUrls: ['./add-workout.component.scss']
+  selector: 'app-modify-workout',
+  templateUrl: './modify-workout.component.html',
+  styleUrls: ['./modify-workout.component.css']
 })
-export class AddWorkoutComponent implements OnInit {
+export class ModifyWorkoutComponent implements OnInit {
 
   workout = {
     nameEn: "", nameNl: "", workoutUrl: "", time: "", videoUrl: "", type: "", specification: '',
@@ -38,10 +38,22 @@ export class AddWorkoutComponent implements OnInit {
   
   subscription: Subscription;
 
+  rememberMe: string;
+
   public config: PerfectScrollbarConfigInterface = {};
   constructor(private toastr: ToastrService, private router: Router, private workoutS: WorkoutService, private modalService: NgbModal,
     private sharedService: SharedService) {
-    
+      debugger
+      this.subscription = this.sharedService.getMessage().subscribe(message => {
+        if (message) {
+          console.log("msg",message)
+          this.workout = message;
+          // this.workout.categories["checked"] = true;
+          // this.workout.categories[1] = true;
+          // this.workout.specification = 'true';
+          // this.workout.categories = this.workout.categories.filter(x => x == "Fit body");
+        }
+      }) 
   }
 
 
@@ -51,11 +63,6 @@ export class AddWorkoutComponent implements OnInit {
     //   {_id:1000, name:"Core"},
     //   {_id:1000, name:"Glutes"}
     // ]
-    this.subscription = this.sharedService.getMessage().subscribe(message => {
-      if (message) {
-        this.workout = message;
-      }
-    }) 
     this.getAllParentMuscles();
   }
 
@@ -86,7 +93,6 @@ export class AddWorkoutComponent implements OnInit {
   getAllParentMuscles() {
     this.workoutS.getAllParentCategories().subscribe(res => {
       this.muscle = res.data;
-      debugger
     })
   }
 
@@ -117,16 +123,16 @@ export class AddWorkoutComponent implements OnInit {
   }
 
   deleteTimeline(index: any){
-      this.workout.timeLines.splice(index, 1);
-  }
+    this.workout.timeLines.splice(index, 1);    
+}
 
   addToTimeline(item: any){
     this.workout.timeLines.push(item);
-}
+  }
 
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 
 }

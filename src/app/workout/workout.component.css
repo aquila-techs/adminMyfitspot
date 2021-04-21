@@ -33,3 +33,26 @@
     top: 0;
     opacity: 0;
 }
+
+th.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+tr.sticky-header {
+    overflow-y: auto;
+}
+
+td.sticky-header {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+}
+
+th.sticky-header-sub {
+    position: sticky;
+    top: 26px;
+    z-index: 5;
+}
+

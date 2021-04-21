@@ -1,0 +1,122 @@
+.margin {
+    margin-bottom: 5px;
+}
+
+.radius {
+    border-radius: 5px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.todo-widget .todo-list .todo-item {
+    padding: 5px 0px 0px 0px !important;
+}
+
+label {
+    font-weight: 400;
+}
+
+.e-accordion .e-acrdn-item.e-expand-state.e-select {
+    border-bottom: 1px solid rgb(177, 174, 174) !important;
+    border-top: none !important;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    /* overflow: hidden; */
+    display: inline-block;
+}
+
+.btn1 {
+    /* border: 1px solid gray; */
+    /* color: gray; */
+    background-color: white;
+    /* padding: 8px 20px; */
+    border-radius: 8px;
+    font-size: 15px;
+    /* font-weight: bold; */
+}
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.e-acrdn-item {
+    border-bottom: 1px solid rgb(177, 174, 174) !important;
+    border-top: none !important;
+    box-shadow: 0px 1px 6px 2px #d6d6d6;
+    border: none;
+    border-radius: 5px;
+}
+
+.e-acrdn-item .e-acrdn-header {
+    background-color: #141414 !important;
+}
+
+.e-acrdn-item .e-acrdn-header .e-acrdn-header-content,
+.e-acrdn-item .e-acrdn-header .e-toggle-icon {
+    color: #ffffff !important;
+}
+
+#acrdn_panel_8 .e-acrdn-content {
+    text-align: center;
+}
+
+.add-grams {
+    background-color: #141414 !important;
+    color: #ffffff;
+}
+
+.add-grams:hover {
+    background-color: #141414 !important;
+}
+
+.e-acrdn-item .card-body {
+    padding: 5px 0px;
+}
+
+.topbar {
+    background-color: black;
+}
+
+.cus-btns {
+    background-color: #68bc45;
+    border-color: #68bc45;
+    color: #ffffff;
+}
+
+
+/* .my-group .form-control{
+    width:50%;
+} */
+
+
+/*
+.modal {
+    display: block !important;
+     I added this to see the modal, you don't need this 
+}
+
+.modal-dialog {
+    overflow-y: initial !important
+}
+
+.modal-body {
+    height: 60vh;
+    overflow-y: auto;
+}
+*/
+
+// :host ::ng-deep .e-accordion .e-acrdn-item .e-acrdn-panel .e-acrdn-content{
+//     line-height: 0.5 !important;
+// }
+
+// :host ::ng-deep .e-accordion .e-acrdn-item .e-acrdn-panel .e-acrdn-content{
+//     padding: 0px;
+// }

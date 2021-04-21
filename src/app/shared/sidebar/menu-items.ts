@@ -132,12 +132,124 @@ export const ROUTES: RouteInfo[] = [
                 submenu: []
             },
             {
-                path: '/workout/addWorkout',
-                title: 'Add WorkOut Category',
+                path: '',
+                title: 'Muscle Group (EN)',
                 icon: 'mdi mdi-adjust',
-                class: '',
+                class: 'has-arrow',
                 extralink: false,
-                submenu: []
+                submenu: [
+                    {
+                        path: '/workout/quadriceps',
+                        title: 'Quadriceps',
+                        icon: '',
+                        class: '',
+                        extralink: false,
+                        submenu: []
+                    },
+                    {
+                        path: '/workout/glutes',
+                        title: 'Glutes',
+                        icon: '',
+                        class: '',
+                        extralink: false,
+                        submenu: []
+                    },
+                    {
+                        path: '/workout/hamstring',
+                        title: 'Hamstring',
+                        icon: '',
+                        class: '',
+                        extralink: false,
+                        submenu: []
+                    },
+                    {
+                        path: '/workout/chest',
+                        title: 'Chest',
+                        icon: '',
+                        class: '',
+                        extralink: false,
+                        submenu: []
+                    },
+                    {
+                        path: '/workout/lats',
+                        title: 'Lats',
+                        icon: '',
+                        class: '',
+                        extralink: false,
+                        submenu: []
+                    },
+                    {
+                        path: '/workout/shoulder',
+                        title: 'Shoulder',
+                        icon: '',
+                        class: '',
+                        extralink: false,
+                        submenu: []
+                    },{
+                        path: '/workout/biceps',
+                        title: 'Biceps',
+                        icon: '',
+                        class: '',
+                        extralink: false,
+                        submenu: []
+                    },
+                    {
+                        path: '/workout/triceps',
+                        title: 'Triceps',
+                        icon: '',
+                        class: '',
+                        extralink: false,
+                        submenu: []
+                    },
+                    {
+                        path: '/workout/core',
+                        title: 'Core',
+                        icon: '',
+                        class: '',
+                        extralink: false,
+                        submenu: []
+                    },
+                    {
+                        path: '/workout/calfs',
+                        title: 'Calfs',
+                        icon: '',
+                        class: '',
+                        extralink: false,
+                        submenu: []
+                    },
+                    {
+                        path: '/workout/upperTraps',
+                        title: 'Upper Traps',
+                        icon: '',
+                        class: '',
+                        extralink: false,
+                        submenu: []
+                    },
+                    {
+                        path: '/workout/bag',
+                        title: 'Bag',
+                        icon: '',
+                        class: '',
+                        extralink: false,
+                        submenu: []
+                    },
+                    {
+                        path: '/workout/mobility',
+                        title: 'Mobility',
+                        icon: '',
+                        class: '',
+                        extralink: false,
+                        submenu: []
+                    }
+                    // {
+                    //     path: '/recipes/addrecipe',
+                    //     title: 'Add Recipe',
+                    //     icon: 'mdi mdi-adjust',
+                    //     class: '',
+                    //     extralink: false,
+                    //     submenu: []
+                    // },
+                ]
             }
         ]
     },

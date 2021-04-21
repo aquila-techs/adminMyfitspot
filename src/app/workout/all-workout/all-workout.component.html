@@ -42,13 +42,14 @@
                         <span class="badge badge-pill badge-info ml-1">{{r.sweatFactor}}</span>
                     </td> -->
                     <td>
-                        <span class="badge badge-pill badge-info ml-1">{{r.muscleGroup}}</span>
+                        <span class="badge badge-pill badge-info ml-1">{{r.muscleGroup.name}}</span>
                     </td>
                     <td>
                         <small> Published </small><br> {{r?.createdAt | date:'shortDate' }}
                     </td>
                     <td>
                         <!-- <i class="ti-layout-cta-center text-info m-r-10 pointer"></i> -->
+                        <i class="ti-pencil text-info m-r-10 pointer" [routerLink]="['/workout/modifyworkout']" (click)="editWorkout(r)"></i>
                         <i class="ti-trash text-danger pointer" (click)="DelWorkOut(r._id,i)"></i>
                     </td>
                 </tr>

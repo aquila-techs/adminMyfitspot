@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { WorkoutService } from '../services/workout.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { SharedService } from '../services/shared.service';
 
 @Component({
   selector: 'app-all-workout',
@@ -15,9 +17,12 @@ export class AllWorkoutComponent implements OnInit {
   numOfItems = 10;
 
   workouts;
+  subscription: Subscription;
 
 
-  constructor(private router:Router, private actRout: ActivatedRoute,private workoutS:WorkoutService, private toastr: ToastrService) { }
+  constructor(private router:Router, private actRout: ActivatedRoute,private workoutS:WorkoutService, private toastr: ToastrService,
+    private sharedService: SharedService) { 
+  }
 
   ngOnInit(): void {
     this.actRout.queryParamMap.subscribe(qparams => {
@@ -43,6 +48,16 @@ export class AllWorkoutComponent implements OnInit {
         
       
     })
+  }
+
+  editWorkout(data) {
+    debugger
+    setTimeout(() => {
+      this.sharedService.sendMessage(data);
+    }, 300);
+    // this.router.navigate(['/workout/modifyworkout'], {
+    //   replaceUrl: true
+    // });
   }
 
   pagination(val) {

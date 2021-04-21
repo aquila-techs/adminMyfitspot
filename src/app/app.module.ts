@@ -32,6 +32,7 @@ import { LoginComponent } from './authentication/login/login.component';
 
 //Interceptor
 import { HttpRequestLoaderInterceptor } from './core/http-request-loader.interceptor';
+// import { PrimePartsModule } from 'src/buildingblocks/primeParts.modules';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -69,6 +70,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     PerfectScrollbarModule,
     AccordionModule,
     NgMultiSelectDropDownModule.forRoot(),
+    // PrimePartsModule
   ],
   providers: [
   {

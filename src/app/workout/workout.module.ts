@@ -10,15 +10,18 @@ import { WorkoutComponent } from './workout.component';
 import { AddWorkoutComponent } from './add-workout/add-workout.component';
 import { AllWorkoutComponent } from './all-workout/all-workout.component';
 import { AccordionModule } from '@syncfusion/ej2-angular-navigations';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';       
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { QuillModule } from 'ngx-quill';
 import Counter from './counter';
+import { SharedService } from './services/shared.service';
+import { ModifyWorkoutComponent } from './modify-workout/modify-workout.component';
+// import { PrimePartsModule } from 'src/buildingblocks/primeParts.modules';
 
 
 @NgModule({
-  declarations: [WorkoutComponent,AddWorkoutComponent, AllWorkoutComponent],
+  declarations: [WorkoutComponent,AddWorkoutComponent, AllWorkoutComponent,ModifyWorkoutComponent],
   imports: [
     CommonModule,
     WorkoutRoutingModule,
@@ -29,7 +32,11 @@ import Counter from './counter';
     ReactiveFormsModule,
     NgMultiSelectDropDownModule,
     QuillModule.forRoot({
-    })
-  ]
+    }),
+    // PrimePartsModule
+  ],
+  providers: [
+    SharedService
+  ],
 })
 export class WorkoutModule { }

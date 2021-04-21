@@ -19,11 +19,14 @@ export class WorkoutService {
     if (body.parentCategory) {
       formData.append("parentCategory", body.parentCategory);  
     }
-    return this.http.post("/workout/categories/create", formData);
+    formData.append("categoryType", body.categoryType);
+    return this.http.post("/workout/categories/create/", formData);
   }
 
-  getAllCategories(): Observable<any> {
-    return this.http.get("/workout/categories/get/all");
+  getAllCategories(categoryType: any): Observable<any> {
+    let formData = new FormData();
+    formData.append("categoryType", categoryType);
+    return this.http.post('/workout/categories/get/all/parent/children', formData);
   }
 
   deleteWorkoutCategories(param): Observable<any> {
@@ -35,7 +38,6 @@ export class WorkoutService {
   }
   
   createWorkout(body, file: File): Observable<any> {
-
     let formData = new FormData();
     formData.append("img", file);
     formData.append("nameEn", body.nameEn);
@@ -54,6 +56,7 @@ export class WorkoutService {
     formData.append("categories", JSON.stringify(body['categories']));
     formData.append("equipment", JSON.stringify(body['equipment']));
     formData.append("excercises", JSON.stringify(body['excercises']));
+    formData.append("timeLines", JSON.stringify(body['timeLines']));
     return this.http.post("/workout/create", formData);
   }
 
