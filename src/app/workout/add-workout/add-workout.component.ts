@@ -46,11 +46,6 @@ export class AddWorkoutComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // this.workout.timeLines = [
-    //   {_id:1000, name:"Fit Body"},
-    //   {_id:1000, name:"Core"},
-    //   {_id:1000, name:"Glutes"}
-    // ]
     this.subscription = this.sharedService.getMessage().subscribe(message => {
       if (message) {
         this.workout = message;
@@ -75,10 +70,10 @@ export class AddWorkoutComponent implements OnInit {
   Addworkout() {
     this.workoutS.createWorkout(this.workout, this.file).subscribe(res => {
       if (res.status == true) {
-        this.toastr.success("WorkOut Published!", 'Success!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
-        setTimeout(() => this.router.navigateByUrl('/workout/all'), 1000)
+        this.toastr.success("WorkOut Published!", 'Success!', { timeOut: 2000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
+        setTimeout(() => this.router.navigateByUrl('/workout/all'), 500)
       } else {
-        this.toastr.error(res.message, 'Oops!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
+        this.toastr.error(res.message, 'Oops!', { timeOut: 2000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
       }
     })
   }
@@ -86,7 +81,19 @@ export class AddWorkoutComponent implements OnInit {
   getAllParentMuscles() {
     this.workoutS.getAllParentCategories().subscribe(res => {
       this.muscle = res.data;
-      debugger
+      this.muscle['quadriceps'] = this.muscle.filter(x=>x.categoryType == 'quadriceps');
+      this.muscle['glutes'] = this.muscle.filter(x=>x.categoryType == 'glutes');
+      this.muscle['hamstring'] = this.muscle.filter(x=>x.categoryType == 'hamstring');
+      this.muscle['chest'] = this.muscle.filter(x=>x.categoryType == 'chest');
+      this.muscle['lats'] = this.muscle.filter(x=>x.categoryType == 'lats');
+      this.muscle['shoulder'] = this.muscle.filter(x=>x.categoryType == 'shoulder');
+      this.muscle['biceps'] = this.muscle.filter(x=>x.categoryType == 'biceps');
+      this.muscle['triceps'] = this.muscle.filter(x=>x.categoryType == 'triceps');
+      this.muscle['core'] = this.muscle.filter(x=>x.categoryType == 'core');
+      this.muscle['calfs'] = this.muscle.filter(x=>x.categoryType == 'calfs');
+      this.muscle['upperTraps'] = this.muscle.filter(x=>x.categoryType == 'upperTraps');
+      this.muscle['bag'] = this.muscle.filter(x=>x.categoryType == 'bag');
+      this.muscle['mobility'] = this.muscle.filter(x=>x.categoryType == 'mobility');
     })
   }
 
@@ -121,7 +128,7 @@ export class AddWorkoutComponent implements OnInit {
   }
 
   addToTimeline(item: any){
-    this.workout.timeLines.push(item);
+    this.workout.timeLines.push(item.name);
 }
 
   ngOnDestroy() {

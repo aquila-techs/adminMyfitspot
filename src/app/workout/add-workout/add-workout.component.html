@@ -67,7 +67,7 @@
                     <table class="table table-hover text-center">
                         <tbody>
                             <tr *ngFor="let m of workout.timeLines; let i = index">
-                                <td style="text-align: left;">{{m.name}}</td>
+                                <td style="text-align: left;">{{m}}</td>
                                 <td>
                                     <i class="ti-trash text-danger pointer" (click)="deleteTimeline(i)"></i>
                                 </td>
@@ -220,7 +220,7 @@
                             <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
                                 <table class="table table-hover text-center">
                                     <tbody>
-                                        <tr *ngFor="let m of muscle; let i = index" data-role="task">
+                                        <tr *ngFor="let m of muscle.quadriceps; let i = index" data-role="task">
                                             <td style="text-align: left;">{{m.name}}</td>
                                             <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
                                         </tr>
@@ -244,7 +244,7 @@
                             <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
                                 <table class="table table-hover text-center">
                                     <tbody>
-                                        <tr *ngFor="let m of muscle; let i = index" data-role="task">
+                                        <tr *ngFor="let m of muscle.glutes; let i = index" data-role="task">
                                             <td style="text-align: left;">{{m.name}}</td>
                                             <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
                                         </tr>
@@ -268,7 +268,7 @@
                             <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
                                 <table class="table table-hover text-center">
                                     <tbody>
-                                        <tr *ngFor="let m of muscle; let i = index" data-role="task">
+                                        <tr *ngFor="let m of muscle.hamstring; let i = index" data-role="task">
                                             <td style="text-align: left;">{{m.name}}</td>
                                             <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
                                         </tr>
@@ -292,7 +292,7 @@
                             <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
                                 <table class="table table-hover text-center">
                                     <tbody>
-                                        <tr *ngFor="let m of muscle; let i = index" data-role="task">
+                                        <tr *ngFor="let m of muscle.chest; let i = index" data-role="task">
                                             <td style="text-align: left;">{{m.name}}</td>
                                             <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
                                         </tr>
@@ -316,7 +316,7 @@
                              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
                                 <table class="table table-hover text-center">
                                     <tbody>
-                                        <tr *ngFor="let m of muscle; let i = index" data-role="task">
+                                        <tr *ngFor="let m of muscle.lats; let i = index" data-role="task">
                                             <td style="text-align: left;">{{m.name}}</td>
                                             <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
                                         </tr>
@@ -340,7 +340,7 @@
                              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
                                 <table class="table table-hover text-center">
                                     <tbody>
-                                        <tr *ngFor="let m of muscle; let i = index" data-role="task">
+                                        <tr *ngFor="let m of muscle.shoulder; let i = index" data-role="task">
                                             <td style="text-align: left;">{{m.name}}</td>
                                             <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
                                         </tr>
@@ -364,7 +364,7 @@
                              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
                                 <table class="table table-hover text-center">
                                     <tbody>
-                                        <tr *ngFor="let m of muscle; let i = index" data-role="task">
+                                        <tr *ngFor="let m of muscle.biceps; let i = index" data-role="task">
                                             <td style="text-align: left;">{{m.name}}</td>
                                             <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
                                         </tr>
@@ -388,7 +388,7 @@
                              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
                                 <table class="table table-hover text-center">
                                     <tbody>
-                                        <tr *ngFor="let m of muscle; let i = index" data-role="task">
+                                        <tr *ngFor="let m of muscle.triceps; let i = index" data-role="task">
                                             <td style="text-align: left;">{{m.name}}</td>
                                             <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
                                         </tr>
@@ -412,7 +412,7 @@
                              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
                                 <table class="table table-hover text-center">
                                     <tbody>
-                                        <tr *ngFor="let m of muscle; let i = index" data-role="task">
+                                        <tr *ngFor="let m of muscle.core; let i = index" data-role="task">
                                             <td style="text-align: left;">{{m.name}}</td>
                                             <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
                                         </tr>
@@ -436,7 +436,7 @@
                              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
                                 <table class="table table-hover text-center">
                                     <tbody>
-                                        <tr *ngFor="let m of muscle; let i = index" data-role="task">
+                                        <tr *ngFor="let m of muscle.calfs; let i = index" data-role="task">
                                             <td style="text-align: left;">{{m.name}}</td>
                                             <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
                                         </tr>
@@ -460,7 +460,7 @@
                              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
                                 <table class="table table-hover text-center">
                                     <tbody>
-                                        <tr *ngFor="let m of muscle; let i = index" data-role="task">
+                                        <tr *ngFor="let m of muscle.upperTraps; let i = index" data-role="task">
                                             <td style="text-align: left;">{{m.name}}</td>
                                             <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
                                         </tr>
@@ -484,7 +484,7 @@
                              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
                                 <table class="table table-hover text-center">
                                     <tbody>
-                                        <tr *ngFor="let m of muscle; let i = index" data-role="task">
+                                        <tr *ngFor="let m of muscle.bag; let i = index" data-role="task">
                                             <td style="text-align: left;">{{m.name}}</td>
                                             <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
                                         </tr>
@@ -508,7 +508,7 @@
                              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
                                 <table class="table table-hover text-center">
                                     <tbody>
-                                        <tr *ngFor="let m of muscle; let i = index" data-role="task">
+                                        <tr *ngFor="let m of muscle.mobility; let i = index" data-role="task">
                                             <td style="text-align: left;">{{m.name}}</td>
                                             <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
                                         </tr>

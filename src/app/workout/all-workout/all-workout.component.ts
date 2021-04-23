@@ -51,13 +51,9 @@ export class AllWorkoutComponent implements OnInit {
   }
 
   editWorkout(data) {
-    debugger
     setTimeout(() => {
       this.sharedService.sendMessage(data);
     }, 300);
-    // this.router.navigate(['/workout/modifyworkout'], {
-    //   replaceUrl: true
-    // });
   }
 
   pagination(val) {
