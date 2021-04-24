@@ -18,9 +18,8 @@ export class ModifyWorkoutComponent implements OnInit {
   workout = {
     nameEn: "", nameNl: "", workoutUrl: "", time: "", videoUrl: "", type: "", specification: '',
     difficulityLevel: "", sweatFactor: "", categories: [], equipment: [], descriptionEn: "",
-    descriptionNl: "", muscleGroup: "", excercises: [], pricing: "", timeLines: []
+    descriptionNl: "", muscleGroup: "", excercises: [], pricing: "", timeLines: [], featureImage: ""
   }
-  env = environment.imgUrl;
   equipment = ["None", "Gluteband", "Resistance Band", "Dumbell", "Barbell", "Rings", "Cable station", "Acces to gym"];
   difficulty = ["Beginner", "Intermediate", "Advanced", "Pro"];
   specification = ["Full body", "Core", "Glutes", "Upper body", "Lower body"];
@@ -30,6 +29,7 @@ export class ModifyWorkoutComponent implements OnInit {
   fileName;
   file;
   imageUrl: string | ArrayBuffer = "";
+  enImageUrl = environment.imgUrl;
   musclesChild = [] as any;
   subscription: Subscription;
   rememberMe: string;
@@ -47,6 +47,8 @@ export class ModifyWorkoutComponent implements OnInit {
         this.workout.categories.includes('Fit body') ? this.fitBody = true : this.fitBody = false;
         this.workout.categories.includes('Fat Burning') ? this.fatBurning = true : this.fatBurning = false;
         this.workout['_id'] = message._id;
+        this.imageUrl = message.featureImage.m;
+        console.log('imageUrl === ', this.imageUrl)
       }
     })
   }
