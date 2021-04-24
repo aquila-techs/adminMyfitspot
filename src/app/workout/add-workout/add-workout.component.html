@@ -1,158 +1,167 @@
 <div class="row">
-    <div class="col-md-9">
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label>Add New WorkOut</label>
-                    <input type="text" class="form-control radius margin" [(ngModel)]="workout.nameEn" id="nameEn" aria-describedby="nameEn" placeholder="Name Of workout(EN)">
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label class="invisible d-sm-block d-none">Add New WorkOut</label>
-                    <input type="text" class="form-control radius" [(ngModel)]="workout.nameNl" id="nameNl" aria-describedby="nameNl" placeholder="Name Of workout(NL)">
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <input type="Number" class="form-control radius" [(ngModel)]="workout.time" id="time" aria-describedby="time" placeholder="Time required (in min)">
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <select id="carbs" class="selectpicker form-control" name="pricing" [(ngModel)]="workout.pricing">
-                        <option value="" disabled selected>Select pricing option</option>
-                        <option value="paid">Paid</option>
-                        <option value="free">Free</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <input type="text" class="form-control radius" [(ngModel)]="workout.videoUrl" id="videoUrl" aria-describedby="videoUrl" placeholder="Add Video Url">
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <input type="text" class="form-control radius" [(ngModel)]="workout.workoutUrl" id="workoutUrl" aria-describedby="workoutUrl" placeholder="Add workout Url">
-                </div>
-            </div>
+  <div class="col-md-9">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>Add New WorkOut</label>
+          <input type="text" class="form-control radius margin" [(ngModel)]="workout.nameEn" id="nameEn"
+            aria-describedby="nameEn" placeholder="Name Of workout(EN)">
         </div>
-
-        <div class="form-group text-center">
-            <label>OR</label>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="invisible d-sm-block d-none">Add New WorkOut</label>
+          <input type="text" class="form-control radius" [(ngModel)]="workout.nameNl" id="nameNl"
+            aria-describedby="nameNl" placeholder="Name Of workout(NL)">
         </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <input type="Number" class="form-control radius" [(ngModel)]="workout.time" id="time" aria-describedby="time"
+            placeholder="Time required (in min)">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <select id="carbs" class="selectpicker form-control" name="pricing" [(ngModel)]="workout.pricing">
+            <option value="" disabled selected>Select pricing option</option>
+            <option value="paid">Paid</option>
+            <option value="free">Free</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <input type="text" class="form-control radius" [(ngModel)]="workout.videoUrl" id="videoUrl"
+            aria-describedby="videoUrl" placeholder="Add Video Url">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <input type="text" class="form-control radius" [(ngModel)]="workout.workoutUrl" id="workoutUrl"
+            aria-describedby="workoutUrl" placeholder="Add workout Url">
+        </div>
+      </div>
+    </div>
 
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-sm-9">
-                    
-                    <div class="card radius">
-                        <div class="card-body radius">
-                            <!-- <div class="margin"> -->
-                                <quill-editor [styles]="{height: '300px'}" [(ngModel)]="workout.descriptionEn" placeholder="Description(EN)"></quill-editor>
-                            <!-- </div> -->
-                            <!-- <div>
+    <div class="form-group text-center">
+      <label>OR</label>
+    </div>
+
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-sm-9">
+
+          <div class="card radius">
+            <div class="card-body radius">
+              <!-- <div class="margin"> -->
+              <quill-editor [styles]="{height: '300px'}" [(ngModel)]="workout.descriptionEn"
+                placeholder="Description(EN)"></quill-editor>
+              <!-- </div> -->
+              <!-- <div>
                                 <quill-editor [styles]="{height: '300px'}" [(ngModel)]="workout.descriptionNl" placeholder="Description(Nl)"></quill-editor>
                             </div> -->
-                        </div>
-                        <div class="card-body radius">
-                                <quill-editor [styles]="{height: '300px'}" [(ngModel)]="workout.descriptionNl" placeholder="Description(Nl)"></quill-editor>
-                        </div>
+            </div>
+            <div class="card-body radius">
+              <quill-editor [styles]="{height: '300px'}" [(ngModel)]="workout.descriptionNl"
+                placeholder="Description(Nl)"></quill-editor>
+            </div>
 
+          </div>
+        </div>
+        <div class="col-sm-3" style="background-color: white;height: 58em;">
+          <label style="text-align: center !important;font-weight: bold;padding: 10px;">Timeline</label>
+          <table class="table table-hover text-center">
+            <tbody>
+              <tr *ngFor="let m of workout.timeLines; let i = index">
+                <td style="text-align: left;">{{m}}</td>
+                <td>
+                  <i class="ti-trash text-danger pointer" (click)="deleteTimeline(i)"></i>
+                </td>
+              </tr>
+              <tr *ngIf="workout.timeLines.length == 0">
+                <td style="text-align: center;color:red">No Record Found</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-3">
+    <div class="form-group m-t-30 justify-content-end">
+      <button type="button" class="btn cus-btns  w-100 radius" (click)="Addworkout()">Publish</button>
+    </div>
+    <!-- Categories -->
+    <div class="m-t-10">
+      <ejs-accordion>
+        <e-accordionitems>
+          <e-accordionitem expanded='true'>
+            <ng-template #header>
+              <div>Type</div>
+            </ng-template>
+            <ng-template #content>
+              <div class="todo-widget scrollable" style="height:4em;" [perfectScrollbar]="config">
+                <ul class="list-task todo-list list-group m-b-0" data-role="categories">
+                  <li class="list-group-item todo-item" *ngFor="let m of categories" data-role="task">
+                    <div class="form-check form-check-inline">
+                      <div class="custom-control custom-checkbox">
+                        <input (click)="addCategory(m)" name="block" class="custom-control-input" id="'b-'{{m}}"
+                          type="checkbox" />
+                        <label class="custom-control-label" for="'b-'{{m}}">{{m}}</label>
+                      </div>
                     </div>
-                </div>
-                <div class="col-sm-3" style="background-color: white;height: 58em;">
-                    <label style="text-align: center !important;font-weight: bold;padding: 10px;">Timeline</label>
-                    <table class="table table-hover text-center">
-                        <tbody>
-                            <tr *ngFor="let m of workout.timeLines; let i = index">
-                                <td style="text-align: left;">{{m}}</td>
-                                <td>
-                                    <i class="ti-trash text-danger pointer" (click)="deleteTimeline(i)"></i>
-                                </td>
-                            </tr>
-                            <tr *ngIf="workout.timeLines.length == 0">
-                                <td style="text-align: center;color:red">No Record Found</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
+                  </li>
+                </ul>
+              </div>
+            </ng-template>
+          </e-accordionitem>
+        </e-accordionitems>
+      </ejs-accordion>
     </div>
-    <div class="col-md-3">
-        <div class="form-group m-t-30 justify-content-end">
-            <button type="button" class="btn cus-btns  w-100 radius" (click)="Addworkout()">Publish</button>
-        </div>
-        <!-- Categories -->
-        <div class="m-t-10">
-            <ejs-accordion>
-                <e-accordionitems>
-                    <e-accordionitem expanded='true'>
-                        <ng-template #header>
-                            <div>Type</div>
-                        </ng-template>
-                        <ng-template #content>
-                            <div class="todo-widget scrollable" style="height:4em;" [perfectScrollbar]="config">
-                                <ul class="list-task todo-list list-group m-b-0" data-role="categories">
-                                    <li class="list-group-item todo-item" *ngFor="let m of categories" data-role="task">
-                                        <div class="form-check form-check-inline">
-                                            <div class="custom-control custom-checkbox">
-                                                <input (click)="addCategory(m)" name="block" class="custom-control-input" id="'b-'{{m}}" type="checkbox" />
-                                                <label class="custom-control-label" for="'b-'{{m}}">{{m}}</label>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </ng-template>
-                    </e-accordionitem>
-                </e-accordionitems>
-            </ejs-accordion>
-        </div>
 
-        <!-- Categories End -->
+    <!-- Categories End -->
 
-        <!-- Categories -->
-        <div class="m-t-10">
-            <ejs-accordion>
-                <e-accordionitems>
-                    <e-accordionitem expanded='true'>
-                        <ng-template #header>
-                            <div>Specifications</div>
-                        </ng-template>
-                        <ng-template #content>
-                            <div class="todo-widget scrollable" style="height:8em;" [perfectScrollbar]="config">
-                                <ul class="list-task todo-list list-group m-b-0" data-role="specification">
-                                    <li class="list-group-item todo-item" *ngFor="let m of specification" data-role="task">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="'c-'{{m}}" name="specification" value="{{m}}" [(ngModel)]="workout.specification" mdbInput>
-                                            <label class="custom-control-label" for="'c-'{{m}}">{{m}}</label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </ng-template>
-                    </e-accordionitem>
-                </e-accordionitems>
-            </ejs-accordion>
-        </div>
+    <!-- Categories -->
+    <div class="m-t-10">
+      <ejs-accordion>
+        <e-accordionitems>
+          <e-accordionitem expanded='true'>
+            <ng-template #header>
+              <div>Specifications</div>
+            </ng-template>
+            <ng-template #content>
+              <div class="todo-widget scrollable" style="height:8em;" [perfectScrollbar]="config">
+                <ul class="list-task todo-list list-group m-b-0" data-role="specification">
+                  <li class="list-group-item todo-item" *ngFor="let m of specification" data-role="task">
+                    <div class="custom-control custom-radio">
+                      <input type="radio" class="custom-control-input" id="'c-'{{m}}" name="specification" value="{{m}}"
+                        [(ngModel)]="workout.specification" mdbInput>
+                      <label class="custom-control-label" for="'c-'{{m}}">{{m}}</label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </ng-template>
+          </e-accordionitem>
+        </e-accordionitems>
+      </ejs-accordion>
+    </div>
 
-        <!-- Categories End -->
+    <!-- Categories End -->
 
 
-        <!-- Categories -->
-        <div class="m-t-10">
-            <ejs-accordion>
-                <e-accordionitems>
-                    <e-accordionitem expanded='true'>
-                        <ng-template #header>
-                            <div>Equipment</div>
-                        </ng-template>
-                        <ng-template #content>
-                            <!-- <div class="todo-widget scrollable" style="height:200px;" [perfectScrollbar]="config">
+    <!-- Categories -->
+    <div class="m-t-10">
+      <ejs-accordion>
+        <e-accordionitems>
+          <e-accordionitem expanded='true'>
+            <ng-template #header>
+              <div>Equipment</div>
+            </ng-template>
+            <ng-template #content>
+              <!-- <div class="todo-widget scrollable" style="height:200px;" [perfectScrollbar]="config">
                                 <ul class="list-task todo-list list-group m-b-0" data-role="diffculity">
                                     <li class="list-group-item todo-item" *ngFor="let m of diffculity" data-role="task">
                                         <div class="custom-control custom-radio">
@@ -162,452 +171,469 @@
                                     </li>
                                 </ul>
                             </div> -->
-                            
-                            <div class="todo-widget scrollable" style="height: 16em;text-align: left;" [perfectScrollbar]="config">
-                                <ul class="list-task todo-list list-group m-b-0" data-role="diffculity">
-                                    <li class="list-group-item todo-item" *ngFor="let m of diffculity" data-role="task">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="'d-'{{m}}" name="difficulity" value="{{m}}" [(ngModel)]="workout.difficulityLevel" mdbInput>
-                                            <label class="custom-control-label" for="'d-'{{m}}">{{m}}</label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </ng-template>
-                    </e-accordionitem>
-                </e-accordionitems>
-            </ejs-accordion>
-        </div>
 
-        <!-- Categories End -->
-
-        <!-- Categories -->
-        <div class="m-t-10">
-            <ejs-accordion>
-                <e-accordionitems>
-                    <e-accordionitem expanded='true'>
-                        <ng-template #header>
-                            <div>Difficulty level (1-4, 4=pro)</div>
-                        </ng-template>
-                        <ng-template #content>
-                            <div class="todo-widget scrollable" style="height:8em;" [perfectScrollbar]="config">
-                                <ul class="list-task todo-list list-group m-b-0" data-role="sweat">
-                                    <li class="list-group-item todo-item" *ngFor="let m of sweat" data-role="task">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="'s-'{{m}}" name="sweatFactor" value="{{m}}" [(ngModel)]="workout.sweatFactor" mdbInput>
-                                            <label class="custom-control-label" for="'s-'{{m}}">{{m}}</label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </ng-template>
-                    </e-accordionitem>
-                </e-accordionitems>
-            </ejs-accordion>
-        </div>
-
-        <!-- Categories End -->
-
-        <!-- Muscle Group -->
-        <div class="m-t-10">
-            <ejs-accordion>
-                <e-accordionitems>
-                    <e-accordionitem expanded='true'>
-                        <ng-template #header>
-                            <div>Quadriceps</div>
-                        </ng-template>
-                        <ng-template #content style="line-height: 0.5 !important;">
-                            <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
-                                <table class="table table-hover text-center">
-                                    <tbody>
-                                        <tr *ngFor="let m of muscle.quadriceps; let i = index" data-role="task">
-                                            <td style="text-align: left;">{{m.name}}</td>
-                                            <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </ng-template>
-                    </e-accordionitem>
-                </e-accordionitems>
-            </ejs-accordion>
-        </div>
-
-        <div class="m-t-10">
-            <ejs-accordion>
-                <e-accordionitems>
-                    <e-accordionitem expanded='true'>
-                        <ng-template #header>
-                            <div>Glutes</div>
-                        </ng-template>
-                        <ng-template #content>
-                            <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
-                                <table class="table table-hover text-center">
-                                    <tbody>
-                                        <tr *ngFor="let m of muscle.glutes; let i = index" data-role="task">
-                                            <td style="text-align: left;">{{m.name}}</td>
-                                            <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </ng-template>
-                    </e-accordionitem>
-                </e-accordionitems>
-            </ejs-accordion>
-        </div>
-
-        <div class="m-t-10">
-            <ejs-accordion>
-                <e-accordionitems>
-                    <e-accordionitem expanded='true'>
-                        <ng-template #header>
-                            <div>Hamstring</div>
-                        </ng-template>
-                        <ng-template #content>
-                            <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
-                                <table class="table table-hover text-center">
-                                    <tbody>
-                                        <tr *ngFor="let m of muscle.hamstring; let i = index" data-role="task">
-                                            <td style="text-align: left;">{{m.name}}</td>
-                                            <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </ng-template>
-                    </e-accordionitem>
-                </e-accordionitems>
-            </ejs-accordion>
-        </div>
-
-        <div class="m-t-10">
-            <ejs-accordion>
-                <e-accordionitems>
-                    <e-accordionitem expanded='true'>
-                        <ng-template #header>
-                            <div>Chest</div>
-                        </ng-template>
-                        <ng-template #content>
-                            <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
-                                <table class="table table-hover text-center">
-                                    <tbody>
-                                        <tr *ngFor="let m of muscle.chest; let i = index" data-role="task">
-                                            <td style="text-align: left;">{{m.name}}</td>
-                                            <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </ng-template>
-                    </e-accordionitem>
-                </e-accordionitems>
-            </ejs-accordion>
-        </div>
-
-        <div class="m-t-10">
-            <ejs-accordion>
-                <e-accordionitems>
-                    <e-accordionitem expanded='true'>
-                        <ng-template #header>
-                            <div>Lats</div>
-                        </ng-template>
-                        <ng-template #content>
-                             <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
-                                <table class="table table-hover text-center">
-                                    <tbody>
-                                        <tr *ngFor="let m of muscle.lats; let i = index" data-role="task">
-                                            <td style="text-align: left;">{{m.name}}</td>
-                                            <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </ng-template>
-                    </e-accordionitem>
-                </e-accordionitems>
-            </ejs-accordion>
-        </div>
-
-        <div class="m-t-10">
-            <ejs-accordion>
-                <e-accordionitems>
-                    <e-accordionitem expanded='true'>
-                        <ng-template #header>
-                            <div>Shoulder</div>
-                        </ng-template>
-                        <ng-template #content>
-                             <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
-                                <table class="table table-hover text-center">
-                                    <tbody>
-                                        <tr *ngFor="let m of muscle.shoulder; let i = index" data-role="task">
-                                            <td style="text-align: left;">{{m.name}}</td>
-                                            <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </ng-template>
-                    </e-accordionitem>
-                </e-accordionitems>
-            </ejs-accordion>
-        </div>
-
-        <div class="m-t-10">
-            <ejs-accordion>
-                <e-accordionitems>
-                    <e-accordionitem expanded='true'>
-                        <ng-template #header>
-                            <div>Biceps</div>
-                        </ng-template>
-                        <ng-template #content>
-                             <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
-                                <table class="table table-hover text-center">
-                                    <tbody>
-                                        <tr *ngFor="let m of muscle.biceps; let i = index" data-role="task">
-                                            <td style="text-align: left;">{{m.name}}</td>
-                                            <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </ng-template>
-                    </e-accordionitem>
-                </e-accordionitems>
-            </ejs-accordion>
-        </div>
-
-        <div class="m-t-10">
-            <ejs-accordion>
-                <e-accordionitems>
-                    <e-accordionitem expanded='true'>
-                        <ng-template #header>
-                            <div>Triceps</div>
-                        </ng-template>
-                        <ng-template #content>
-                             <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
-                                <table class="table table-hover text-center">
-                                    <tbody>
-                                        <tr *ngFor="let m of muscle.triceps; let i = index" data-role="task">
-                                            <td style="text-align: left;">{{m.name}}</td>
-                                            <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </ng-template>
-                    </e-accordionitem>
-                </e-accordionitems>
-            </ejs-accordion>
-        </div>
-
-        <div class="m-t-10">
-            <ejs-accordion>
-                <e-accordionitems>
-                    <e-accordionitem expanded='true'>
-                        <ng-template #header>
-                            <div>Core</div>
-                        </ng-template>
-                        <ng-template #content>
-                             <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
-                                <table class="table table-hover text-center">
-                                    <tbody>
-                                        <tr *ngFor="let m of muscle.core; let i = index" data-role="task">
-                                            <td style="text-align: left;">{{m.name}}</td>
-                                            <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </ng-template>
-                    </e-accordionitem>
-                </e-accordionitems>
-            </ejs-accordion>
-        </div>
-
-        <div class="m-t-10">
-            <ejs-accordion>
-                <e-accordionitems>
-                    <e-accordionitem expanded='true'>
-                        <ng-template #header>
-                            <div>Calfs</div>
-                        </ng-template>
-                        <ng-template #content>
-                             <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
-                                <table class="table table-hover text-center">
-                                    <tbody>
-                                        <tr *ngFor="let m of muscle.calfs; let i = index" data-role="task">
-                                            <td style="text-align: left;">{{m.name}}</td>
-                                            <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </ng-template>
-                    </e-accordionitem>
-                </e-accordionitems>
-            </ejs-accordion>
-        </div>
-
-        <div class="m-t-10">
-            <ejs-accordion>
-                <e-accordionitems>
-                    <e-accordionitem expanded='true'>
-                        <ng-template #header>
-                            <div>Upper Traps</div>
-                        </ng-template>
-                        <ng-template #content>
-                             <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
-                                <table class="table table-hover text-center">
-                                    <tbody>
-                                        <tr *ngFor="let m of muscle.upperTraps; let i = index" data-role="task">
-                                            <td style="text-align: left;">{{m.name}}</td>
-                                            <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </ng-template>
-                    </e-accordionitem>
-                </e-accordionitems>
-            </ejs-accordion>
-        </div>
-
-        <div class="m-t-10">
-            <ejs-accordion>
-                <e-accordionitems>
-                    <e-accordionitem expanded='true'>
-                        <ng-template #header>
-                            <div>Bag</div>
-                        </ng-template>
-                        <ng-template #content>
-                             <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
-                                <table class="table table-hover text-center">
-                                    <tbody>
-                                        <tr *ngFor="let m of muscle.bag; let i = index" data-role="task">
-                                            <td style="text-align: left;">{{m.name}}</td>
-                                            <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </ng-template>
-                    </e-accordionitem>
-                </e-accordionitems>
-            </ejs-accordion>
-        </div>
-
-        <div class="m-t-10">
-            <ejs-accordion>
-                <e-accordionitems>
-                    <e-accordionitem expanded='true'>
-                        <ng-template #header>
-                            <div>Mobility</div>
-                        </ng-template>
-                        <ng-template #content>
-                             <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;" [perfectScrollbar]="config">
-                                <table class="table table-hover text-center">
-                                    <tbody>
-                                        <tr *ngFor="let m of muscle.mobility; let i = index" data-role="task">
-                                            <td style="text-align: left;">{{m.name}}</td>
-                                            <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </ng-template>
-                    </e-accordionitem>
-                </e-accordionitems>
-            </ejs-accordion>
-        </div>
-
-        <!-- Muscle Group End -->
-
-        <!-- Feature Image -->
-
-        <div class="m-t-10">
-            <ejs-accordion>
-                <e-accordionitems>
-                    <e-accordionitem expanded='true'>
-                        <ng-template #header>
-                            <div>Feature Image</div>
-                        </ng-template>
-                        <ng-template #content>
-                            <div class="upload-btn-wrapper pointer">
-                                <button style="padding: 0; border: 0; background: transparent;" class="btn1">
-                                    <div
-                                        style="flex-direction: column; border: 2px dashed #999; background-color: transparent; width: 200px; height: 100px; display: flex; justify-content: center; align-items: center;">
-                                        <img *ngIf="imageUrl"
-                                            style="opacity: 0.7; z-index: 1; position: absolute; top: 0; bottom: 0; left: 0; right: 0"
-                                            [src]="imageUrl" width="300" height="200" />
-
-                                        <i *ngIf="!imageUrl" style="z-index: 2; color: #444;"
-                                            class="fa fa-upload pointer"></i>
-                                        <span *ngIf="!imageUrl" style="z-index: 2; color: #444; font-weight: 20px;"
-                                            class="text-muted">Upload Feature Image</span>
-                                    </div>
-                                </button>
-                                <input type="file" name="banner" #fileInput (change)="onChange(fileInput.files[0])" class="custom-file-input" id="banner">
-                            </div>
-                        </ng-template>
-                    </e-accordionitem>
-                </e-accordionitems>
-            </ejs-accordion>
-        </div>
+              <div class="todo-widget scrollable" style="height: 16em;text-align: left;" [perfectScrollbar]="config">
+                <ul class="list-task todo-list list-group m-b-0" data-role="diffculity">
+                  <li class="list-group-item todo-item" *ngFor="let m of equipment" data-role="task">
+                    <div class="custom-control custom-radio">
+                      <input type="radio" class="custom-control-input" id="'d-'{{m}}" name="difficulity" value="{{m}}"
+                        (click)="addEquipment(m)" mdbInput>
+                      <label class="custom-control-label" for="'d-'{{m}}">{{m}}</label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </ng-template>
+          </e-accordionitem>
+        </e-accordionitems>
+      </ejs-accordion>
     </div>
+
+    <!-- Categories End -->
+
+    <!-- Categories -->
+    <div class="m-t-10">
+      <ejs-accordion>
+        <e-accordionitems>
+          <e-accordionitem expanded='true'>
+            <ng-template #header>
+              <div>Difficulty level (1-4, 4=pro)</div>
+            </ng-template>
+            <ng-template #content>
+              <div class="todo-widget scrollable" style="height:8em;" [perfectScrollbar]="config">
+                <ul class="list-task todo-list list-group m-b-0" data-role="sweat">
+                  <li class="list-group-item todo-item" *ngFor="let m of diffculity" data-role="task">
+                    <div class="custom-control custom-radio">
+                      <input type="radio" class="custom-control-input" id="'s-'{{m}}" name="sweatFactor" value="{{m}}"
+                        [(ngModel)]="workout.difficulityLevel" mdbInput>
+                      <label class="custom-control-label" for="'s-'{{m}}">{{m}}</label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </ng-template>
+          </e-accordionitem>
+        </e-accordionitems>
+      </ejs-accordion>
+    </div>
+
+    <!-- Categories End -->
+
+    <!-- Muscle Group -->
+    <div class="m-t-10">
+      <ejs-accordion>
+        <e-accordionitems>
+          <e-accordionitem expanded='true'>
+            <ng-template #header>
+              <div>Quadriceps</div>
+            </ng-template>
+            <ng-template #content style="line-height: 0.5 !important;">
+              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;"
+                [perfectScrollbar]="config">
+                <table class="table table-hover text-center">
+                  <tbody>
+                    <tr *ngFor="let m of muscle.quadriceps; let i = index" data-role="task">
+                      <td style="text-align: left;">{{m.name}}</td>
+                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ng-template>
+          </e-accordionitem>
+        </e-accordionitems>
+      </ejs-accordion>
+    </div>
+
+    <div class="m-t-10">
+      <ejs-accordion>
+        <e-accordionitems>
+          <e-accordionitem expanded='true'>
+            <ng-template #header>
+              <div>Glutes</div>
+            </ng-template>
+            <ng-template #content>
+              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;"
+                [perfectScrollbar]="config">
+                <table class="table table-hover text-center">
+                  <tbody>
+                    <tr *ngFor="let m of muscle.glutes; let i = index" data-role="task">
+                      <td style="text-align: left;">{{m.name}}</td>
+                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ng-template>
+          </e-accordionitem>
+        </e-accordionitems>
+      </ejs-accordion>
+    </div>
+
+    <div class="m-t-10">
+      <ejs-accordion>
+        <e-accordionitems>
+          <e-accordionitem expanded='true'>
+            <ng-template #header>
+              <div>Hamstring</div>
+            </ng-template>
+            <ng-template #content>
+              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;"
+                [perfectScrollbar]="config">
+                <table class="table table-hover text-center">
+                  <tbody>
+                    <tr *ngFor="let m of muscle.hamstring; let i = index" data-role="task">
+                      <td style="text-align: left;">{{m.name}}</td>
+                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ng-template>
+          </e-accordionitem>
+        </e-accordionitems>
+      </ejs-accordion>
+    </div>
+
+    <div class="m-t-10">
+      <ejs-accordion>
+        <e-accordionitems>
+          <e-accordionitem expanded='true'>
+            <ng-template #header>
+              <div>Chest</div>
+            </ng-template>
+            <ng-template #content>
+              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;"
+                [perfectScrollbar]="config">
+                <table class="table table-hover text-center">
+                  <tbody>
+                    <tr *ngFor="let m of muscle.chest; let i = index" data-role="task">
+                      <td style="text-align: left;">{{m.name}}</td>
+                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ng-template>
+          </e-accordionitem>
+        </e-accordionitems>
+      </ejs-accordion>
+    </div>
+
+    <div class="m-t-10">
+      <ejs-accordion>
+        <e-accordionitems>
+          <e-accordionitem expanded='true'>
+            <ng-template #header>
+              <div>Lats</div>
+            </ng-template>
+            <ng-template #content>
+              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;"
+                [perfectScrollbar]="config">
+                <table class="table table-hover text-center">
+                  <tbody>
+                    <tr *ngFor="let m of muscle.lats; let i = index" data-role="task">
+                      <td style="text-align: left;">{{m.name}}</td>
+                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ng-template>
+          </e-accordionitem>
+        </e-accordionitems>
+      </ejs-accordion>
+    </div>
+
+    <div class="m-t-10">
+      <ejs-accordion>
+        <e-accordionitems>
+          <e-accordionitem expanded='true'>
+            <ng-template #header>
+              <div>Shoulder</div>
+            </ng-template>
+            <ng-template #content>
+              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;"
+                [perfectScrollbar]="config">
+                <table class="table table-hover text-center">
+                  <tbody>
+                    <tr *ngFor="let m of muscle.shoulder; let i = index" data-role="task">
+                      <td style="text-align: left;">{{m.name}}</td>
+                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ng-template>
+          </e-accordionitem>
+        </e-accordionitems>
+      </ejs-accordion>
+    </div>
+
+    <div class="m-t-10">
+      <ejs-accordion>
+        <e-accordionitems>
+          <e-accordionitem expanded='true'>
+            <ng-template #header>
+              <div>Biceps</div>
+            </ng-template>
+            <ng-template #content>
+              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;"
+                [perfectScrollbar]="config">
+                <table class="table table-hover text-center">
+                  <tbody>
+                    <tr *ngFor="let m of muscle.biceps; let i = index" data-role="task">
+                      <td style="text-align: left;">{{m.name}}</td>
+                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ng-template>
+          </e-accordionitem>
+        </e-accordionitems>
+      </ejs-accordion>
+    </div>
+
+    <div class="m-t-10">
+      <ejs-accordion>
+        <e-accordionitems>
+          <e-accordionitem expanded='true'>
+            <ng-template #header>
+              <div>Triceps</div>
+            </ng-template>
+            <ng-template #content>
+              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;"
+                [perfectScrollbar]="config">
+                <table class="table table-hover text-center">
+                  <tbody>
+                    <tr *ngFor="let m of muscle.triceps; let i = index" data-role="task">
+                      <td style="text-align: left;">{{m.name}}</td>
+                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ng-template>
+          </e-accordionitem>
+        </e-accordionitems>
+      </ejs-accordion>
+    </div>
+
+    <div class="m-t-10">
+      <ejs-accordion>
+        <e-accordionitems>
+          <e-accordionitem expanded='true'>
+            <ng-template #header>
+              <div>Core</div>
+            </ng-template>
+            <ng-template #content>
+              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;"
+                [perfectScrollbar]="config">
+                <table class="table table-hover text-center">
+                  <tbody>
+                    <tr *ngFor="let m of muscle.core; let i = index" data-role="task">
+                      <td style="text-align: left;">{{m.name}}</td>
+                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ng-template>
+          </e-accordionitem>
+        </e-accordionitems>
+      </ejs-accordion>
+    </div>
+
+    <div class="m-t-10">
+      <ejs-accordion>
+        <e-accordionitems>
+          <e-accordionitem expanded='true'>
+            <ng-template #header>
+              <div>Calfs</div>
+            </ng-template>
+            <ng-template #content>
+              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;"
+                [perfectScrollbar]="config">
+                <table class="table table-hover text-center">
+                  <tbody>
+                    <tr *ngFor="let m of muscle.calfs; let i = index" data-role="task">
+                      <td style="text-align: left;">{{m.name}}</td>
+                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ng-template>
+          </e-accordionitem>
+        </e-accordionitems>
+      </ejs-accordion>
+    </div>
+
+    <div class="m-t-10">
+      <ejs-accordion>
+        <e-accordionitems>
+          <e-accordionitem expanded='true'>
+            <ng-template #header>
+              <div>Upper Traps</div>
+            </ng-template>
+            <ng-template #content>
+              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;"
+                [perfectScrollbar]="config">
+                <table class="table table-hover text-center">
+                  <tbody>
+                    <tr *ngFor="let m of muscle.upperTraps; let i = index" data-role="task">
+                      <td style="text-align: left;">{{m.name}}</td>
+                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ng-template>
+          </e-accordionitem>
+        </e-accordionitems>
+      </ejs-accordion>
+    </div>
+
+    <div class="m-t-10">
+      <ejs-accordion>
+        <e-accordionitems>
+          <e-accordionitem expanded='true'>
+            <ng-template #header>
+              <div>Bag</div>
+            </ng-template>
+            <ng-template #content>
+              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;"
+                [perfectScrollbar]="config">
+                <table class="table table-hover text-center">
+                  <tbody>
+                    <tr *ngFor="let m of muscle.bag; let i = index" data-role="task">
+                      <td style="text-align: left;">{{m.name}}</td>
+                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ng-template>
+          </e-accordionitem>
+        </e-accordionitems>
+      </ejs-accordion>
+    </div>
+
+    <div class="m-t-10">
+      <ejs-accordion>
+        <e-accordionitems>
+          <e-accordionitem expanded='true'>
+            <ng-template #header>
+              <div>Mobility</div>
+            </ng-template>
+            <ng-template #content>
+              <div class="todo-widget scrollable" style="height: 14em;line-height: 0;font-size: 12px;"
+                [perfectScrollbar]="config">
+                <table class="table table-hover text-center">
+                  <tbody>
+                    <tr *ngFor="let m of muscle.mobility; let i = index" data-role="task">
+                      <td style="text-align: left;">{{m.name}}</td>
+                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ng-template>
+          </e-accordionitem>
+        </e-accordionitems>
+      </ejs-accordion>
+    </div>
+
+    <!-- Muscle Group End -->
+
+    <!-- Feature Image -->
+
+    <div class="m-t-10">
+      <ejs-accordion>
+        <e-accordionitems>
+          <e-accordionitem expanded='true'>
+            <ng-template #header>
+              <div>Feature Image</div>
+            </ng-template>
+            <ng-template #content>
+              <div class="upload-btn-wrapper pointer">
+                <button style="padding: 0; border: 0; background: transparent;" class="btn1">
+                  <div
+                    style="flex-direction: column; border: 2px dashed #999; background-color: transparent; width: 200px; height: 100px; display: flex; justify-content: center; align-items: center;">
+                    <img *ngIf="imageUrl"
+                      style="opacity: 0.7; z-index: 1; position: absolute; top: 0; bottom: 0; left: 0; right: 0"
+                      [src]="imageUrl" width="300" height="200" />
+
+                    <i *ngIf="!imageUrl" style="z-index: 2; color: #444;" class="fa fa-upload pointer"></i>
+                    <span *ngIf="!imageUrl" style="z-index: 2; color: #444; font-weight: 20px;"
+                      class="text-muted">Upload Feature Image</span>
+                  </div>
+                </button>
+                <input type="file" name="banner" #fileInput (change)="onChange(fileInput.files[0])"
+                  class="custom-file-input" id="banner">
+              </div>
+            </ng-template>
+          </e-accordionitem>
+        </e-accordionitems>
+      </ejs-accordion>
+    </div>
+  </div>
 </div>
 
 <ng-template #openChildMuscles let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title">Add {{workout?.muscleGroup?.name}} Excercises</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body" style="height:400px;" [perfectScrollbar]="config">
-        <!-- ============================================================== -->
-        <!-- Card -->
-        <div class="card">
-            <div class="card-body">
-                <div class="table-responsive m-t-40">
-                    <table class="table stylish-table" *ngIf='musclesChild.length > 0'>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th colspan="">Description</th>
-                                <!-- <th>Video</th> -->
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor='let m of musclesChild'>
-                                <td>
-                                    <h6>{{m?.name}}</h6>
-                                </td>
-                                <td>{{m?.description}}</td>
-                                <!-- <td>
+  <div class="modal-header">
+    <h4 class="modal-title">Add {{workout?.muscleGroup?.name}} Excercises</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="height:400px;" [perfectScrollbar]="config">
+    <!-- ============================================================== -->
+    <!-- Card -->
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive m-t-40">
+          <table class="table stylish-table" *ngIf='musclesChild.length > 0'>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th colspan="">Description</th>
+                <!-- <th>Video</th> -->
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let m of musclesChild'>
+                <td>
+                  <h6>{{m?.name}}</h6>
+                </td>
+                <td>{{m?.description}}</td>
+                <!-- <td>
                                     <div class="embed-responsive embed-responsive-4by3">
                                         <iframe class="embed-responsive-item" src="{{env+m?.video | safe:'html'}}"></iframe>
                                     </div>
                                 </td> -->
-                                <td>
-                                    <button *ngIf="!workout.excercises.includes(m._id)" type="button" class="btn btn-info radius" (click)='addExcersise(m._id)'>Add</button>
-                                    <button *ngIf="workout.excercises.includes(m._id)" type="button" class="btn btn-danger radius" (click)='removeExcersise(m._id)'>Remove</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class='text-center' *ngIf='musclesChild.length <= 0'>
-                        <h3>Nothing to Add!</h3>
-                    </div>
-                </div>
-            </div>
+                <td>
+                  <button *ngIf="!workout.excercises.includes(m._id)" type="button" class="btn btn-info radius"
+                    (click)='addExcersise(m._id)'>Add</button>
+                  <button *ngIf="workout.excercises.includes(m._id)" type="button" class="btn btn-danger radius"
+                    (click)='removeExcersise(m._id)'>Remove</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class='text-center' *ngIf='musclesChild.length <= 0'>
+            <h3>Nothing to Add!</h3>
+          </div>
         </div>
-        <!-- ============================================================== -->
+      </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-inverse" (click)="modal.dismiss('Cross click')">
-            Close
-        </button>
-    </div>
+    <!-- ============================================================== -->
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-inverse" (click)="modal.dismiss('Cross click')">
+      Close
+    </button>
+  </div>
 </ng-template>
