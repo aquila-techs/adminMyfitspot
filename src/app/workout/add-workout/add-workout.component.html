@@ -74,7 +74,7 @@
           <table class="table table-hover text-center">
             <tbody>
               <tr *ngFor="let m of workout.timeLines; let i = index">
-                <td style="text-align: left;">{{m}}</td>
+                <td style="text-align: left;">{{m.name}}</td>
                 <td>
                   <i class="ti-trash text-danger pointer" (click)="deleteTimeline(i)"></i>
                 </td>

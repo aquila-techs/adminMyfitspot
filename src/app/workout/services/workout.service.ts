@@ -17,7 +17,7 @@ export class WorkoutService {
     formData.append("slug", body.slug);
     formData.append("description", body.description);
     if (body.parentCategory) {
-      formData.append("parentCategory", body.parentCategory);  
+      formData.append("parentCategory", body.parentCategory);
     }
     formData.append("categoryType", body.categoryType);
     return this.http.post("/workout/categories/create/", formData);
@@ -36,7 +36,7 @@ export class WorkoutService {
   updateWorkoutCategories(param,body): Observable<any> {
     return this.http.put("/workout/categories/update/"+param,body);
   }
-  
+
   createWorkout(body, file: File): Observable<any> {
     let formData = new FormData();
     formData.append("img", file);
@@ -97,6 +97,10 @@ export class WorkoutService {
 
   deleteWorkout(param): Observable<any> {
     return this.http.delete("/workout/" + param);
+  }
+
+  getCategoryById(id: any) {
+    return this.http.get("/workout/categories/get/user/"+id);
   }
 
 }

@@ -7,6 +7,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { environment } from "src/environments/environment";
 import { Subscription } from 'rxjs';
 import { SharedService } from '../services/shared.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-modify-workout',
@@ -16,9 +17,9 @@ import { SharedService } from '../services/shared.service';
 export class ModifyWorkoutComponent implements OnInit {
 
   workout = {
-    nameEn: "", nameNl: "", workoutUrl: "", time: "", videoUrl: "", type: "", specification: '',
-    difficulityLevel: "", sweatFactor: "", categories: [], equipment: [], descriptionEn: "",
-    descriptionNl: "", muscleGroup: "", excercises: [], pricing: "", timeLines: [], featureImage: ""
+    nameEn: "", nameNl: "", workoutUrl: "", time: "", videoUrl: "", specification: '',
+    difficulityLevel: "", categories: [], equipment: [], descriptionEn: "",
+    descriptionNl: "", pricing: "", timeLines: [], featureImage: {}
   }
   equipment = ["None", "Gluteband", "Resistance Band", "Dumbell", "Barbell", "Rings", "Cable station", "Acces to gym"];
   difficulty = ["Beginner", "Intermediate", "Advanced", "Pro"];
@@ -35,19 +36,33 @@ export class ModifyWorkoutComponent implements OnInit {
   rememberMe: string;
   fitBody = false;
   fatBurning = false;
+  imageForm: FormGroup;
 
   public config: PerfectScrollbarConfigInterface = {};
 
   constructor(private toastr: ToastrService, private router: Router, private workoutS: WorkoutService, private modalService: NgbModal,
-    private sharedService: SharedService) {
+    private sharedService: SharedService, private formBuilder: FormBuilder) {
     this.subscription = this.sharedService.getMessage().subscribe(message => {
       if (message) {
-        this.workout = message;
+        this.workout.nameEn = message.nameEn;
+        this.workout.nameNl = message.nameNl;
+        this.workout.workoutUrl = message.workoutUrl;
+        this.workout.time = message.time;
+        this.workout.videoUrl = message.videoUrl;
+        this.workout.specification = message.specification;
+        this.workout.difficulityLevel = message.difficulityLevel;
+        this.workout.categories = message.categories;
+        this.workout.equipment = message.equipment;
+        this.workout.descriptionEn = message.descriptionEn;
+        this.workout.descriptionNl = message.descriptionNl;
+        this.workout.pricing = message.pricing;
+        this.workout.timeLines = message.timeLines;
+        this.workout.featureImage = message.featureImage;
         console.log(this.workout);
         this.workout.categories.includes('Fit body') ? this.fitBody = true : this.fitBody = false;
         this.workout.categories.includes('Fat Burning') ? this.fatBurning = true : this.fatBurning = false;
         this.workout['_id'] = message._id;
-        this.imageUrl = message.featureImage.m;
+        console.log(this.workout.timeLines)
         console.log('imageUrl === ', this.imageUrl)
       }
     })
@@ -55,6 +70,10 @@ export class ModifyWorkoutComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.imageForm = this.formBuilder.group({
+      file: ['']
+    })
+    console.log(this.imageForm.value)
     this.getAllParentMuscles();
   }
 
@@ -63,6 +82,10 @@ export class ModifyWorkoutComponent implements OnInit {
     if (file) {
       this.fileName = file.name;
       this.file = file;
+      this.imageForm.patchValue({
+        file: this.file
+      });
+      console.log(this.imageForm.value);
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = event => {
@@ -102,22 +125,22 @@ export class ModifyWorkoutComponent implements OnInit {
     })
   }
 
-  openchildMuscle(openChildMuscles, id, name) {
-    this.workout.muscleGroup = '';
-    this.workout.excercises = [];
-    this.workout.muscleGroup = name;
-    this.workoutS.getAllParentChildCategories(id).subscribe(res => {
-      this.musclesChild = res.data;
-      this.modalService.open(openChildMuscles, { windowClass: "dark-modal", size: 'lg', centered: true })
-    })
-  }
+  // openchildMuscle(openChildMuscles, id, name) {
+  //   this.workout.muscleGroup = '';
+  //   this.workout.excercises = [];
+  //   this.workout.muscleGroup = name;
+  //   this.workoutS.getAllParentChildCategories(id).subscribe(res => {
+  //     this.musclesChild = res.data;
+  //     this.modalService.open(openChildMuscles, { windowClass: "dark-modal", size: 'lg', centered: true })
+  //   })
+  // }
 
-  addExcersise(id) {
-    this.workout.excercises.push(id);
-  }
-  removeExcersise(id) {
-    this.workout.excercises = this.workout.excercises.filter(ele => ele != id);
-  }
+  // addExcersise(id) {
+  //   this.workout.excercises.push(id);
+  // }
+  // removeExcersise(id) {
+  //   this.workout.excercises = this.workout.excercises.filter(ele => ele != id);
+  // }
 
   addCategory(c) {
     console.log(c)
@@ -134,10 +157,17 @@ export class ModifyWorkoutComponent implements OnInit {
 
   deleteTimeline(index: any) {
     this.workout.timeLines.splice(index, 1);
+    console.log('workout.timeLines', this.workout.timeLines)
   }
 
   addToTimeline(item: any) {
-    this.workout.timeLines.push(item.name);
+    console.log(item)
+    const obj = {
+      _id: item._id,
+      name: item.name
+    }
+    this.workout.timeLines.push(obj);
+    console.log('workout.timeLines', this.workout.timeLines)
   }
 
   ngOnDestroy() {

@@ -4,7 +4,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { WorkoutService } from '../services/workout.service';
 import {
   NgbModal,
@@ -39,6 +39,7 @@ export class AddWorkoutComponent implements OnInit {
     excercises: [],
     pricing: '',
     timeLines: [],
+    timeLineName: []
   };
   env = environment.imgUrl;
 
@@ -61,7 +62,6 @@ export class AddWorkoutComponent implements OnInit {
   file;
   imageUrl: string | ArrayBuffer = '';
   musclesChild = [] as any;
-
   subscription: Subscription;
 
   public config: PerfectScrollbarConfigInterface = {};
@@ -127,6 +127,7 @@ export class AddWorkoutComponent implements OnInit {
   getAllParentMuscles() {
     this.workoutS.getAllParentCategories().subscribe(
       (res) => {
+        console.log('MUSCLE CHILDREN RESPONSE === ', res);
         this.muscle = res.data;
         this.muscle['quadriceps'] = this.muscle.filter(
           (x) => x.categoryType == 'quadriceps'
@@ -212,10 +213,19 @@ export class AddWorkoutComponent implements OnInit {
 
   deleteTimeline(index: any) {
     this.workout.timeLines.splice(index, 1);
+    // this.workout.timeLineName.splice(index, 1);
+    console.log(this.workout.timeLines)
   }
 
   addToTimeline(item: any) {
-    this.workout.timeLines.push(item.name);
+    console.log(item);
+    const obj = {
+      _id: item._id,
+      name: item.name
+    }
+    this.workout.timeLines.push(obj);
+    // this.workout.timeLineName.push(item.name)
+    console.log(this.workout.timeLines)
   }
 
   ngOnDestroy() {

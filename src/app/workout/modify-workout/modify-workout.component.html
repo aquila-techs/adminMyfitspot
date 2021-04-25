@@ -74,7 +74,7 @@
           <table class="table table-hover text-center">
             <tbody>
               <tr *ngFor="let m of workout.timeLines; let i = index">
-                <td style="text-align: left;">{{m}}</td>
+                <td style="text-align: left;">{{m.name}}</td>
                 <td>
                   <i class="ti-trash text-danger pointer" (click)="deleteTimeline(i)"></i>
                 </td>
@@ -559,9 +559,12 @@
                 <button style="padding: 0; border: 0; background: transparent;" class="btn1">
                   <div
                     style="flex-direction: column; border: 2px dashed #999; background-color: transparent; width: 200px; height: 100px; display: flex; justify-content: center; align-items: center;">
-                    <img *ngIf="imageUrl"
+                    <img *ngIf="workout?.featureImage?.m"
                       style="opacity: 0.7; z-index: 1; position: absolute; top: 0; bottom: 0; left: 0; right: 0"
                       src="{{enImageUrl}}{{workout?.featureImage?.m}}" width="300" height="200" />
+                      <img *ngIf="imageUrl"
+                      style="opacity: 0.7; z-index: 1; position: absolute; top: 0; bottom: 0; left: 0; right: 0"
+                      src="{{imageUrl}}" width="300" height="200" />
 
                     <i *ngIf="!imageUrl" style="z-index: 2; color: #444;" class="fa fa-upload pointer"></i>
                     <span *ngIf="!imageUrl" style="z-index: 2; color: #444; font-weight: 20px;"
@@ -579,7 +582,7 @@
   </div>
 </div>
 
-<ng-template #openChildMuscles let-modal>
+<!-- <ng-template #openChildMuscles let-modal>
   <div class="modal-header">
     <h4 class="modal-title">Add {{workout?.muscleGroup?.name}} Excercises</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -587,8 +590,7 @@
     </button>
   </div>
   <div class="modal-body" style="height:400px;" [perfectScrollbar]="config">
-    <!-- ============================================================== -->
-    <!-- Card -->
+    Card
     <div class="card">
       <div class="card-body">
         <div class="table-responsive m-t-40">
@@ -597,7 +599,6 @@
               <tr>
                 <th>Name</th>
                 <th colspan="">Description</th>
-                <!-- <th>Video</th> -->
                 <th>Action</th>
               </tr>
             </thead>
@@ -607,11 +608,9 @@
                   <h6>{{m?.name}}</h6>
                 </td>
                 <td>{{m?.description}}</td>
-                <!-- <td>
                                     <div class="embed-responsive embed-responsive-4by3">
                                         <iframe class="embed-responsive-item" src="{{env+m?.video | safe:'html'}}"></iframe>
                                     </div>
-                                </td> -->
                 <td>
                   <button *ngIf="!workout.excercises.includes(m._id)" type="button" class="btn btn-info radius"
                     (click)='addExcersise(m._id)'>Add</button>
@@ -627,11 +626,10 @@
         </div>
       </div>
     </div>
-    <!-- ============================================================== -->
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-inverse" (click)="modal.dismiss('Cross click')">
       Close
     </button>
   </div>
-</ng-template>
+</ng-template> -->
