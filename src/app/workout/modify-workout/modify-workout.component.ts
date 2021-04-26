@@ -68,22 +68,20 @@ export class ModifyWorkoutComponent implements OnInit {
     })
   }
 
-
   ngOnInit(): void {
     this.imageForm = this.formBuilder.group({
-      file: ['']
+      img: ['']
     })
     console.log(this.imageForm.value)
     this.getAllParentMuscles();
   }
-
 
   onChange(file: File) {
     if (file) {
       this.fileName = file.name;
       this.file = file;
       this.imageForm.patchValue({
-        file: this.file
+        img: this.file
       });
       console.log(this.imageForm.value);
       const reader = new FileReader();
@@ -95,8 +93,25 @@ export class ModifyWorkoutComponent implements OnInit {
   }
 
   modifyWorkout() {
-    console.log(this.workout);
-    this.workoutS.modifyWorkout(this.workout, this.file).subscribe(res => {
+    // console.log(this.workout);
+    const formData = new FormData();
+    formData.append("img", this.file);
+    formData.append("id", this.workout['_id']);
+    formData.append("nameEn", this.workout.nameEn);
+    formData.append("nameNl", this.workout.nameNl);
+    formData.append("workoutUrl", this.workout.workoutUrl);
+    formData.append("time", this.workout.time);
+    formData.append("videoUrl", this.workout.videoUrl);
+    formData.append("specification", this.workout.specification);
+    formData.append("difficulityLevel", this.workout.difficulityLevel);
+    formData.append("categories", JSON.stringify(this.workout.categories));
+    formData.append("equipment", JSON.stringify(this.workout.equipment));
+    formData.append("pricing", this.workout.pricing);
+    formData.append("descriptionNl", this.workout.descriptionNl);
+    formData.append("descriptionEn", this.workout.descriptionEn);
+    formData.append("timeLines", JSON.stringify(this.workout.timeLines));
+    formData.append("featureImage", JSON.stringify(this.workout.featureImage));
+    this.workoutS.modifyWorkout(formData).subscribe(res => {
       if (res.status == true) {
         this.toastr.success("WorkOut Modified!", 'Success!', { timeOut: 2000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
         setTimeout(() => this.router.navigateByUrl('/workout/all'), 500)

@@ -12,10 +12,13 @@ export class WorkoutService {
 
   createWorkOutCategory(body, file: File): Observable<any> {
     let formData = new FormData();
-    formData.append("workoutVideo", file);
+    if(file) {
+      formData.append("workoutVideo", file);
+    }
     formData.append("name", body.name);
     formData.append("slug", body.slug);
     formData.append("description", body.description);
+    formData.append("videoUrl", body.videoUrl);
     if (body.parentCategory) {
       formData.append("parentCategory", body.parentCategory);
     }
@@ -60,27 +63,11 @@ export class WorkoutService {
     return this.http.post("/workout/create", formData);
   }
 
-  modifyWorkout(body, file: File): Observable<any> {
-    // let formData = new FormData();
-    // formData.append("img", file);
-    // formData.append("nameEn", body.nameEn);
-    // formData.append("nameNl", body.nameNl);
-    // formData.append("descriptionEn", body.descriptionEn);
-    // formData.append("descriptionNl", body.descriptionNl);
-    // formData.append("difficulityLevel", body.difficulityLevel);
-    // formData.append("videoUrl", body.videoUrl);
-    // formData.append("workoutUrl", body.workoutUrl);
-    // formData.append("time", body.time);
-    // formData.append("type", body.type);
-    // formData.append("muscleGroup", body.muscleGroup);
-    // formData.append("specification", body.specification);
-    // formData.append("sweatFactor", body.sweatFactor);
-    // formData.append("pricing", body.pricing);
-    // formData.append("categories", JSON.stringify(body['categories']));
-    // formData.append("equipment", JSON.stringify(body['equipment']));
-    // formData.append("excercises", JSON.stringify(body['excercises']));
-    // formData.append("timeLines", JSON.stringify(body['timeLines']));
-    return this.http.put(`/workout/update/${body._id}`, body);
+  modifyWorkout(body): Observable<any> {
+    console.log('body ===========> ', body);
+    const id = body.get("id");
+    console.log('id in body part ==========> ', id);
+    return this.http.put(`/workout/update/${id}`, body);
   }
 
   getAllUserWorkouts(body): Observable<any> {

@@ -13,7 +13,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 })
 export class WorkoutComponent implements OnInit {
 
-  workoutCategories = { name: "", slug: "", description: "", categoryType: "" } as any;
+  workoutCategories = { name: "", slug: "", description: "", categoryType: "", videoUrl: "" } as any;
   // parentCategory = "";
   categories;
   sCategory;
@@ -42,9 +42,7 @@ export class WorkoutComponent implements OnInit {
   }
 
   addCategory(form: NgForm) {
-    // if (this.parentCategory !== "") {
-    //   this.workoutCategories.parentCategory = this.parentCategory
-    // }
+    console.log(this.workoutCategories)
     this.workoutS.createWorkOutCategory(this.workoutCategories, this.file).subscribe(res => {
       if (res.status == true) {
         this.ngOnInit();
@@ -85,7 +83,7 @@ export class WorkoutComponent implements OnInit {
           this.toastr.error(res.message, 'Oops!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
         }
       })
-    } 
+    }
   }
 
   onChange(file: File) {
