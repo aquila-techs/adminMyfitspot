@@ -10,10 +10,13 @@ export class WorkoutService {
 
   constructor(private http: HttpClient) { }
 
-  createWorkOutCategory(body, file: File): Observable<any> {
+  createWorkOutCategory(body, file: File, imageFile: File): Observable<any> {
     let formData = new FormData();
-    if(file) {
+    if (file) {
       formData.append("workoutVideo", file);
+    }
+    if (imageFile) {
+      formData.append("img", imageFile);
     }
     formData.append("name", body.name);
     formData.append("slug", body.slug);
@@ -33,11 +36,11 @@ export class WorkoutService {
   }
 
   deleteWorkoutCategories(param): Observable<any> {
-    return this.http.delete("/workout/categories/delete/"+param);
+    return this.http.delete("/workout/categories/delete/" + param);
   }
 
-  updateWorkoutCategories(param,body): Observable<any> {
-    return this.http.put("/workout/categories/update/"+param,body);
+  updateWorkoutCategories(param, body): Observable<any> {
+    return this.http.put("/workout/categories/update/" + param, body);
   }
 
   createWorkout(body, file: File): Observable<any> {
@@ -49,6 +52,7 @@ export class WorkoutService {
     formData.append("descriptionNl", body.descriptionNl);
     formData.append("difficulityLevel", body.difficulityLevel);
     formData.append("videoUrl", body.videoUrl);
+    formData.append("numberOfCalories", body.numberOfCalories);
     formData.append("workoutUrl", body.workoutUrl);
     formData.append("time", body.time);
     formData.append("type", body.type);
@@ -73,13 +77,14 @@ export class WorkoutService {
   getAllUserWorkouts(body): Observable<any> {
     return this.http.post("/workout/get/user", body);
   }
+
   getAllParentCategories(): Observable<any> {
     return this.http.get("/workout/categories/get/all");
     // return this.http.get("/workout/categories/get/all/parent");
   }
 
-  getAllParentChildCategories(id:any): Observable<any> {
-    return this.http.get("/workout/categories/get/all/parent/children/"+id);
+  getAllParentChildCategories(id: any): Observable<any> {
+    return this.http.get("/workout/categories/get/all/parent/children/" + id);
   }
 
   deleteWorkout(param): Observable<any> {
@@ -87,7 +92,7 @@ export class WorkoutService {
   }
 
   getCategoryById(id: any) {
-    return this.http.get("/workout/categories/get/user/"+id);
+    return this.http.get("/workout/categories/get/user/" + id);
   }
 
 }

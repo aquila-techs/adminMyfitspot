@@ -19,9 +19,9 @@ export class ModifyWorkoutComponent implements OnInit {
   workout = {
     nameEn: "", nameNl: "", workoutUrl: "", time: "", videoUrl: "", specification: '',
     difficulityLevel: "", categories: [], equipment: [], descriptionEn: "",
-    descriptionNl: "", pricing: "", timeLines: [], featureImage: {}
+    descriptionNl: "", pricing: "", timeLines: [], featureImage: {}, numberOfCalories: null
   }
-  equipment = ["None", "Gluteband", "Resistance Band", "Dumbell", "Barbell", "Rings", "Cable station", "Acces to gym"];
+  equipment = ["None", "Gluteband", "Resistance Band", "Dumbell", "Barbell", "Rings", "Acces to gym"];
   difficulty = ["Beginner", "Intermediate", "Advanced", "Pro"];
   specification = ["Full body", "Core", "Glutes", "Upper body", "Lower body"];
   categories = ["Fit body", "Fat Burning"]
@@ -37,6 +37,7 @@ export class ModifyWorkoutComponent implements OnInit {
   fitBody = false;
   fatBurning = false;
   imageForm: FormGroup;
+  timeLineCount;
 
   public config: PerfectScrollbarConfigInterface = {};
 
@@ -49,6 +50,7 @@ export class ModifyWorkoutComponent implements OnInit {
         this.workout.workoutUrl = message.workoutUrl;
         this.workout.time = message.time;
         this.workout.videoUrl = message.videoUrl;
+        this.workout.numberOfCalories = message.numberOfCalories;
         this.workout.specification = message.specification;
         this.workout.difficulityLevel = message.difficulityLevel;
         this.workout.categories = message.categories;
@@ -57,12 +59,12 @@ export class ModifyWorkoutComponent implements OnInit {
         this.workout.descriptionNl = message.descriptionNl;
         this.workout.pricing = message.pricing;
         this.workout.timeLines = message.timeLines;
-        this.workout.featureImage = message.featureImage;
+        this.workout.featureImage = message.featureImage === undefined ? {} : message.featureImage;
         console.log(this.workout);
         this.workout.categories.includes('Fit body') ? this.fitBody = true : this.fitBody = false;
         this.workout.categories.includes('Fat Burning') ? this.fatBurning = true : this.fatBurning = false;
         this.workout['_id'] = message._id;
-        console.log(this.workout.timeLines)
+        console.log(this.workout.featureImage)
         console.log('imageUrl === ', this.imageUrl)
       }
     })
@@ -102,6 +104,7 @@ export class ModifyWorkoutComponent implements OnInit {
     formData.append("workoutUrl", this.workout.workoutUrl);
     formData.append("time", this.workout.time);
     formData.append("videoUrl", this.workout.videoUrl);
+    formData.append("numberOfCalories", this.workout.numberOfCalories);
     formData.append("specification", this.workout.specification);
     formData.append("difficulityLevel", this.workout.difficulityLevel);
     formData.append("categories", JSON.stringify(this.workout.categories));
@@ -140,23 +143,6 @@ export class ModifyWorkoutComponent implements OnInit {
     })
   }
 
-  // openchildMuscle(openChildMuscles, id, name) {
-  //   this.workout.muscleGroup = '';
-  //   this.workout.excercises = [];
-  //   this.workout.muscleGroup = name;
-  //   this.workoutS.getAllParentChildCategories(id).subscribe(res => {
-  //     this.musclesChild = res.data;
-  //     this.modalService.open(openChildMuscles, { windowClass: "dark-modal", size: 'lg', centered: true })
-  //   })
-  // }
-
-  // addExcersise(id) {
-  //   this.workout.excercises.push(id);
-  // }
-  // removeExcersise(id) {
-  //   this.workout.excercises = this.workout.excercises.filter(ele => ele != id);
-  // }
-
   addCategory(c) {
     console.log(c)
     if (this.workout.categories.includes(c)) {
@@ -175,14 +161,43 @@ export class ModifyWorkoutComponent implements OnInit {
     console.log('workout.timeLines', this.workout.timeLines)
   }
 
+  onSearchChange(event: any) {
+    console.log(event);
+    this.timeLineCount = event;
+  }
+
+  addRest() {
+    const rest = {
+      name: "rest",
+      description: "rest",
+      slug: "rest",
+      videoUrl: "",
+      count: 0,
+      isComplete: false,
+      rest: true,
+    }
+    this.workout.timeLines.push(rest);
+    console.log(this.workout.timeLines)
+  }
+
   addToTimeline(item: any) {
     console.log(item)
     const obj = {
-      _id: item._id,
-      name: item.name
+      category_id: item._id,
+      name: item.name,
+      categoryType: item.categoryType,
+      description: item.description,
+      slug: item.slug,
+      videoUrl: item.videoUrl,
+      count: Number(this.timeLineCount),
+      isComplete: false,
+      rest: false
     }
     this.workout.timeLines.push(obj);
-    console.log('workout.timeLines', this.workout.timeLines)
+    this.timeLineCount = null;
+    console.log(item.categoryType);
+    (<HTMLInputElement>document.getElementById(`${item.categoryType}-` + `${item._id}`)).value = null;
+    console.log(this.workout.timeLines)
   }
 
   ngOnDestroy() {

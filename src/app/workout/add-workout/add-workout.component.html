@@ -42,6 +42,12 @@
             aria-describedby="workoutUrl" placeholder="Add workout Url">
         </div>
       </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <input type="text" class="form-control radius" [(ngModel)]="workout.numberOfCalories" id="numberOfCalories"
+            aria-describedby="numberOfCalories" placeholder="Number Of Calories">
+        </div>
+      </div>
     </div>
 
     <div class="form-group text-center">
@@ -70,12 +76,16 @@
           </div>
         </div>
         <div class="col-sm-3" style="background-color: white;height: 58em;">
-          <label style="text-align: center !important;font-weight: bold;padding: 10px;">Timeline</label>
-          <table class="table table-hover text-center">
-            <tbody>
-              <tr *ngFor="let m of workout.timeLines; let i = index">
-                <td style="text-align: left;">{{m.name}}</td>
-                <td>
+          <div>
+            <label class="mt-1" style="text-align: center !important;font-weight: bold;padding: 10px;">Timeline</label>
+            <button type="button" class="btn cus-btns w-10 radius mt-2" style="float: right;" (click)="addRest()">Rest</button>
+          </div>
+          <table style="padding: 1rem;" class="table table-hover text-center">
+            <tbody style="padding: 1rem;">
+              <tr style="padding: 1rem;" *ngFor="let m of workout.timeLines; let i = index">
+                <td style="text-align: left; padding: 1rem;">{{m.name}}</td>
+                <td style="padding: 1rem;">{{m.count}}</td>
+                <td style="padding: 1rem;">
                   <i class="ti-trash text-danger pointer" (click)="deleteTimeline(i)"></i>
                 </td>
               </tr>
@@ -161,18 +171,7 @@
               <div>Equipment</div>
             </ng-template>
             <ng-template #content>
-              <!-- <div class="todo-widget scrollable" style="height:200px;" [perfectScrollbar]="config">
-                                <ul class="list-task todo-list list-group m-b-0" data-role="diffculity">
-                                    <li class="list-group-item todo-item" *ngFor="let m of diffculity" data-role="task">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="'d-'{{m}}" name="difficulity" value="{{m}}" [(ngModel)]="workout.difficulityLevel" mdbInput>
-                                            <label class="custom-control-label" for="'d-'{{m}}">{{m}}</label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div> -->
-
-              <div class="todo-widget scrollable" style="height: 16em;text-align: left;" [perfectScrollbar]="config">
+              <div class="todo-widget scrollable" style="height: 14em;text-align: left;" [perfectScrollbar]="config">
                 <ul class="list-task todo-list list-group m-b-0" data-role="diffculity">
                   <li class="list-group-item todo-item" *ngFor="let m of equipment" data-role="task">
                     <div class="custom-control custom-radio">
@@ -234,7 +233,9 @@
                   <tbody>
                     <tr *ngFor="let m of muscle.quadriceps; let i = index" data-role="task">
                       <td style="text-align: left;">{{m.name}}</td>
-                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                      <td><input id="{{m.categoryType}}-{{m._id}}" type="text" class="form-control"
+                          (input)="onSearchChange($event.target.value)" /></td>
+                      <td><i class="fa fa-plus mr-2" style="cursor: pointer;" (click)="addToTimeline(m)"></i></td>
                     </tr>
                   </tbody>
                 </table>
@@ -259,7 +260,9 @@
                   <tbody>
                     <tr *ngFor="let m of muscle.glutes; let i = index" data-role="task">
                       <td style="text-align: left;">{{m.name}}</td>
-                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                      <td><input id="{{m.categoryType}}-{{m._id}}" type="text" class="form-control"
+                          (input)="onSearchChange($event.target.value)" /></td>
+                      <td><i class="fa fa-plus mr-2" style="cursor: pointer;" (click)="addToTimeline(m)"></i></td>
                     </tr>
                   </tbody>
                 </table>
@@ -284,7 +287,9 @@
                   <tbody>
                     <tr *ngFor="let m of muscle.hamstring; let i = index" data-role="task">
                       <td style="text-align: left;">{{m.name}}</td>
-                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                      <td><input id="{{m.categoryType}}-{{m._id}}" type="text" class="form-control"
+                          (input)="onSearchChange($event.target.value)" /></td>
+                      <td><i class="fa fa-plus mr-2" style="cursor: pointer;" (click)="addToTimeline(m)"></i></td>
                     </tr>
                   </tbody>
                 </table>
@@ -309,7 +314,9 @@
                   <tbody>
                     <tr *ngFor="let m of muscle.chest; let i = index" data-role="task">
                       <td style="text-align: left;">{{m.name}}</td>
-                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                      <td><input id="{{m.categoryType}}-{{m._id}}" type="text" class="form-control"
+                          (input)="onSearchChange($event.target.value)" /></td>
+                      <td><i class="fa fa-plus mr-2" style="cursor: pointer;" (click)="addToTimeline(m)"></i></td>
                     </tr>
                   </tbody>
                 </table>
@@ -334,7 +341,9 @@
                   <tbody>
                     <tr *ngFor="let m of muscle.lats; let i = index" data-role="task">
                       <td style="text-align: left;">{{m.name}}</td>
-                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                      <td><input id="{{m.categoryType}}-{{m._id}}" type="text" class="form-control"
+                          (input)="onSearchChange($event.target.value)" /></td>
+                      <td><i class="fa fa-plus mr-2" style="cursor: pointer;" (click)="addToTimeline(m)"></i></td>
                     </tr>
                   </tbody>
                 </table>
@@ -359,7 +368,9 @@
                   <tbody>
                     <tr *ngFor="let m of muscle.shoulder; let i = index" data-role="task">
                       <td style="text-align: left;">{{m.name}}</td>
-                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                      <td><input id="{{m.categoryType}}-{{m._id}}" type="text" class="form-control"
+                          (input)="onSearchChange($event.target.value)" /></td>
+                      <td><i class="fa fa-plus mr-2" style="cursor: pointer;" (click)="addToTimeline(m)"></i></td>
                     </tr>
                   </tbody>
                 </table>
@@ -384,7 +395,9 @@
                   <tbody>
                     <tr *ngFor="let m of muscle.biceps; let i = index" data-role="task">
                       <td style="text-align: left;">{{m.name}}</td>
-                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                      <td><input id="{{m.categoryType}}-{{m._id}}" type="text" class="form-control"
+                          (input)="onSearchChange($event.target.value)" /></td>
+                      <td><i class="fa fa-plus mr-2" style="cursor: pointer;" (click)="addToTimeline(m)"></i></td>
                     </tr>
                   </tbody>
                 </table>
@@ -409,7 +422,9 @@
                   <tbody>
                     <tr *ngFor="let m of muscle.triceps; let i = index" data-role="task">
                       <td style="text-align: left;">{{m.name}}</td>
-                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                      <td><input id="{{m.categoryType}}-{{m._id}}" type="text" class="form-control"
+                          (input)="onSearchChange($event.target.value)" /></td>
+                      <td><i class="fa fa-plus mr-2" style="cursor: pointer;" (click)="addToTimeline(m)"></i></td>
                     </tr>
                   </tbody>
                 </table>
@@ -434,7 +449,9 @@
                   <tbody>
                     <tr *ngFor="let m of muscle.core; let i = index" data-role="task">
                       <td style="text-align: left;">{{m.name}}</td>
-                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                      <td><input id="{{m.categoryType}}-{{m._id}}" type="text" class="form-control"
+                          (input)="onSearchChange($event.target.value)" /></td>
+                      <td><i class="fa fa-plus mr-2" style="cursor: pointer;" (click)="addToTimeline(m)"></i></td>
                     </tr>
                   </tbody>
                 </table>
@@ -459,7 +476,9 @@
                   <tbody>
                     <tr *ngFor="let m of muscle.calfs; let i = index" data-role="task">
                       <td style="text-align: left;">{{m.name}}</td>
-                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                      <td><input id="{{m.categoryType}}-{{m._id}}" type="text" class="form-control"
+                          (input)="onSearchChange($event.target.value)" /></td>
+                      <td><i class="fa fa-plus mr-2" style="cursor: pointer;" (click)="addToTimeline(m)"></i></td>
                     </tr>
                   </tbody>
                 </table>
@@ -484,7 +503,9 @@
                   <tbody>
                     <tr *ngFor="let m of muscle.upperTraps; let i = index" data-role="task">
                       <td style="text-align: left;">{{m.name}}</td>
-                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                      <td><input id="{{m.categoryType}}-{{m._id}}" type="text" class="form-control"
+                          (input)="onSearchChange($event.target.value)" /></td>
+                      <td><i class="fa fa-plus mr-2" style="cursor: pointer;" (click)="addToTimeline(m)"></i></td>
                     </tr>
                   </tbody>
                 </table>
@@ -509,7 +530,9 @@
                   <tbody>
                     <tr *ngFor="let m of muscle.bag; let i = index" data-role="task">
                       <td style="text-align: left;">{{m.name}}</td>
-                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                      <td><input id="{{m.categoryType}}-{{m._id}}" type="text" class="form-control"
+                          (input)="onSearchChange($event.target.value)" /></td>
+                      <td><i class="fa fa-plus mr-2" style="cursor: pointer;" (click)="addToTimeline(m)"></i></td>
                     </tr>
                   </tbody>
                 </table>
@@ -534,7 +557,9 @@
                   <tbody>
                     <tr *ngFor="let m of muscle.mobility; let i = index" data-role="task">
                       <td style="text-align: left;">{{m.name}}</td>
-                      <td><i class="fa fa-plus" (click)="addToTimeline(m)"></i></td>
+                      <td><input id="{{m.categoryType}}-{{m._id}}" type="text" class="form-control"
+                          (input)="onSearchChange($event.target.value)" /></td>
+                      <td><i class="fa fa-plus mr-2" style="cursor: pointer;" (click)="addToTimeline(m)"></i></td>
                     </tr>
                   </tbody>
                 </table>

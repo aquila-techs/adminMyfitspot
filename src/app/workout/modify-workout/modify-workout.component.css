@@ -91,6 +91,12 @@ label {
     color: #ffffff;
 }
 
+.table th, .table td {
+  padding: 0.5rem;
+  vertical-align: middle;
+  border-top: 1px solid #e9ecef;
+}
+
 
 /* .my-group .form-control{
     width:50%;
@@ -100,7 +106,7 @@ label {
 /*
 .modal {
     display: block !important;
-     I added this to see the modal, you don't need this 
+     I added this to see the modal, you don't need this
 }
 
 .modal-dialog {

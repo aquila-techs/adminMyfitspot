@@ -18,8 +18,8 @@
       </div>
       <div class="form-group">
         <label>Video Url</label>
-        <input type="text" class="form-control radius" [(ngModel)]="workoutCategories.videoUrl" id="video" placeholder="Video Url"
-          name="video" aria-describedby="video">
+        <input type="text" class="form-control radius" [(ngModel)]="workoutCategories.videoUrl" id="video"
+          placeholder="Video Url" name="video" aria-describedby="video">
       </div>
       <!-- <div class="form-group">
                 <label class="mr-sm-2" for="inlineFormCustomSelect">Parent Category</label>
@@ -28,7 +28,7 @@
                     <option *ngFor="let cat of categories" value="{{cat._id}}">{{cat.name}}</option>
                 </select>
             </div> -->
-      <div class="form-group">
+      <!-- <div class="form-group">
         <div class="upload-btn-wrapper pointer">
           <button style="padding: 0; border: 0; background: transparent;" class="btn1">
             <div
@@ -44,6 +44,24 @@
           </button>
           <input type="file" name="banner" #fileInput (change)="onChange(fileInput.files[0])" class="custom-file-input"
             id="banner" name="video">
+        </div>
+      </div> -->
+      <div class="form-group">
+        <div class="upload-btn-wrapper pointer">
+          <button style="padding: 0; border: 0; background: transparent;" class="btn1">
+            <div
+              style="flex-direction: column; border: 2px dashed #999; background-color: transparent; width: 200px; height: 100px; display: flex; justify-content: center; align-items: center;">
+              <img *ngIf="imageUrl"
+                style="opacity: 0.7; z-index: 1; position: absolute; top: 0; bottom: 0; left: 0; right: 0"
+                [src]="imageUrl" width="300" height="200" />
+
+              <i *ngIf="!imageUrl" style="z-index: 2; color: #444;" class="fa fa-upload pointer"></i>
+              <span *ngIf="!imageUrl" style="z-index: 2; color: #444; font-weight: 20px;"
+                class="text-muted">Upload Feature Image</span>
+            </div>
+          </button>
+          <input type="file" name="banner" #fileImageInput (change)="onImageChange(fileImageInput.files[0])"
+            class="custom-file-input" id="banner">
         </div>
       </div>
       <div class="form-group m-t-10">
@@ -94,34 +112,20 @@
           placeholder="Name" />
       </div>
       <div class="form-group">
+        <label for="slug">Slug</label>
+        <input [(ngModel)]="sCategory.slug" name="slug" type="text" class="form-control margin" id="slug"
+          placeholder="Slug" />
+      </div>
+      <div class="form-group">
         <label for="slug">Description</label>
         <input [(ngModel)]="sCategory.description" name="description" type="text" class="form-control margin"
           id="description" placeholder="Description" />
       </div>
-      <!-- <div class="form-group">
-                <div class="upload-btn-wrapper pointer">
-                    <button style="padding: 0; border: 0; background: transparent;" class="btn1">
-                        <div
-                            style="flex-direction: column; border: 2px dashed #999; background-color: transparent; width: 200px; height: 100px; display: flex; justify-content: center; align-items: center;">
-                            <span *ngIf="fileUrl"
-                                style="opacity: 0.7; z-index: 1; position: absolute; top: 0; bottom: 0; left: 0; right: 0"
-                                 width="300" height="200">{{sCategory.video}}</span>
-
-                                <i *ngIf="!fileUrl" style="z-index: 2; color: #444;"
-                                    class="fa fa-upload pointer"></i>
-                                    <span *ngIf="!fileUrl" style="z-index: 2; color: #444; font-weight: 20px;" class="text-muted">Upload Video</span>
-                              </div>
-                    </button>
-                    <input type="file" name="banner" #fileInput (change)="onChange(fileInput.files[0])" class="custom-file-input" id="banner" name="video">
-                </div>
-            </div> -->
-      <!-- <div class="form-group">
-                <label class="mr-sm-2" for="inlineFormCustomSelect">Parent Category</label>
-                <select class="custom-select mr-sm-2 radius" [(ngModel)]="sCategory.parentCategory" id="inlineFormCustomSelect" name="parentCategory">
-                    <option value="">None</option>
-                    <option *ngFor="let cat of categories" value="{{cat._id}}">{{cat.name}}</option>
-                </select>
-            </div> -->
+      <div class="form-group">
+        <label for="videoUrl">Video Url</label>
+        <input [(ngModel)]="sCategory.videoUrl" name="videoUrl" type="text" class="form-control margin" id="videoUrl"
+          placeholder="Video Url" />
+      </div>
     </form>
   </div>
   <div class="modal-footer">

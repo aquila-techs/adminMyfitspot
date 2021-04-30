@@ -27,6 +27,7 @@ export class AddWorkoutComponent implements OnInit {
     workoutUrl: '',
     time: '',
     videoUrl: '',
+    numberOfCalories: null,
     type: '',
     specification: '',
     difficulityLevel: '',
@@ -50,7 +51,6 @@ export class AddWorkoutComponent implements OnInit {
     'Dumbell',
     'Barbell',
     'Rings',
-    'Cable station',
     'Acces to gym',
   ];
   diffculity = ['Beginner', 'Intermediate', 'Advanced', 'Pro'];
@@ -63,6 +63,7 @@ export class AddWorkoutComponent implements OnInit {
   imageUrl: string | ArrayBuffer = '';
   musclesChild = [] as any;
   subscription: Subscription;
+  timeLineCount;
 
   public config: PerfectScrollbarConfigInterface = {};
   constructor(
@@ -217,14 +218,41 @@ export class AddWorkoutComponent implements OnInit {
     console.log(this.workout.timeLines)
   }
 
+  onSearchChange(event: any) {
+    console.log(event);
+    this.timeLineCount = event;
+  }
+
+  addRest() {
+    const rest = {
+      name: "rest",
+      description: "rest",
+      slug: "rest",
+      videoUrl: "",
+      count: 0,
+      isComplete: false,
+      rest: true,
+    }
+    this.workout.timeLines.push(rest);
+    console.log(this.workout.timeLines)
+  }
+
   addToTimeline(item: any) {
-    console.log(item);
     const obj = {
-      _id: item._id,
-      name: item.name
+      category_id: item._id,
+      name: item.name,
+      categoryType: item.categoryType,
+      description: item.description,
+      slug: item.slug,
+      videoUrl: item.videoUrl,
+      count: Number(this.timeLineCount),
+      isComplete: false,
+      rest: false
     }
     this.workout.timeLines.push(obj);
-    // this.workout.timeLineName.push(item.name)
+    this.timeLineCount = null;
+    console.log(item.categoryType);
+    (<HTMLInputElement>document.getElementById(`${item.categoryType}-` + `${item._id}`)).value = null;
     console.log(this.workout.timeLines)
   }
 

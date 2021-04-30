@@ -20,19 +20,21 @@ export class WorkoutComponent implements OnInit {
 
   fileName;
   file;
+  imageFile;
   fileUrl: string | ArrayBuffer = "";
+  imageUrl: string | ArrayBuffer = '';
 
   public config: PerfectScrollbarConfigInterface = {};
   constructor(private modalService: NgbModal, private toastr: ToastrService,
     private router: Router, private workoutS: WorkoutService, private activatedRoute: ActivatedRoute) {
-    this.workoutCategories.categoryType  = this.activatedRoute.snapshot.url[0].path
-     }
+    this.workoutCategories.categoryType = this.activatedRoute.snapshot.url[0].path
+  }
 
 
   ngOnInit(): void {
     this.workoutS.getAllCategories(this.workoutCategories.categoryType).subscribe(res => {
       if (res.status === true) {
-        res.data.forEach((element,index) => {
+        res.data.forEach((element, index) => {
           res.data[index].name = res.data[index].name == 'null' ? '' : res.data[index].name;
           res.data[index].description = res.data[index].description == 'null' ? '' : res.data[index].description;
         });
@@ -43,19 +45,21 @@ export class WorkoutComponent implements OnInit {
 
   addCategory(form: NgForm) {
     console.log(this.workoutCategories)
-    this.workoutS.createWorkOutCategory(this.workoutCategories, this.file).subscribe(res => {
+    this.workoutS.createWorkOutCategory(this.workoutCategories, this.file, this.imageFile).subscribe(res => {
       if (res.status == true) {
         this.ngOnInit();
         form.reset();
         this.file = '';
         this.fileName = '';
         this.fileUrl = '';
+        this.imageUrl = '';
         this.toastr.success("Category Added!", 'Success!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
       } else {
         this.toastr.error(res.message, 'Oops!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
       }
     })
   }
+
   updateCategory() {
     this.workoutS.updateWorkoutCategories(this.sCategory._id, this.sCategory).subscribe(res => {
       if (res.status == true) {
@@ -70,6 +74,7 @@ export class WorkoutComponent implements OnInit {
 
   editCategory(edit, i) {
     this.sCategory = this.categories[i];
+    console.log(this.sCategory);
     this.modalService.open(edit, { ariaLabelledBy: 'modal-basic-title', centered: true, windowClass: "dark-modal" });
   }
 
@@ -83,6 +88,20 @@ export class WorkoutComponent implements OnInit {
           this.toastr.error(res.message, 'Oops!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
         }
       })
+    }
+  }
+
+  onImageChange(file: File) {
+    console.log(file);
+    if (file) {
+      this.fileName = file.name;
+      this.imageFile = file;
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event) => {
+        this.imageUrl = reader.result;
+        console.log('image url === ', this.imageUrl);
+      };
     }
   }
 
