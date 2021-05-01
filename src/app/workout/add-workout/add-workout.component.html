@@ -6,6 +6,9 @@
           <label>Add New WorkOut</label>
           <input type="text" class="form-control radius margin" [(ngModel)]="workout.nameEn" id="nameEn"
             aria-describedby="nameEn" placeholder="Name Of workout(EN)">
+          <!-- <span class="ml-2" style="color:red" *ngIf="workout.nameEn?.length < 1">
+            10 max
+          </span> -->
         </div>
       </div>
       <div class="col-sm-6">
@@ -78,7 +81,8 @@
         <div class="col-sm-3" style="background-color: white;height: 58em;">
           <div>
             <label class="mt-1" style="text-align: center !important;font-weight: bold;padding: 10px;">Timeline</label>
-            <button type="button" class="btn cus-btns w-10 radius mt-2" style="float: right;" (click)="addRest()">Rest</button>
+            <button type="button" class="btn cus-btns w-10 radius mt-2" style="float: right;"
+              (click)="addRest()">Rest</button>
           </div>
           <table style="padding: 1rem;" class="table table-hover text-center">
             <tbody style="padding: 1rem;">

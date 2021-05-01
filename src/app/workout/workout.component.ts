@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { NgForm } from '@angular/forms';
 import { WorkoutService } from './services/workout.service';
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-workout',
@@ -14,15 +15,17 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 export class WorkoutComponent implements OnInit {
 
   workoutCategories = { name: "", slug: "", description: "", categoryType: "", videoUrl: "" } as any;
-  // parentCategory = "";
+  enImageUrl = environment.imgUrl;
   categories;
   sCategory;
-
   fileName;
   file;
   imageFile;
+  imageUpdateFile;
   fileUrl: string | ArrayBuffer = "";
   imageUrl: string | ArrayBuffer = '';
+  imageUpdateUrl: string | ArrayBuffer = '';
+  cateImage;
 
   public config: PerfectScrollbarConfigInterface = {};
   constructor(private modalService: NgbModal, private toastr: ToastrService,
@@ -61,7 +64,8 @@ export class WorkoutComponent implements OnInit {
   }
 
   updateCategory() {
-    this.workoutS.updateWorkoutCategories(this.sCategory._id, this.sCategory).subscribe(res => {
+    console.log(this.imageUpdateFile);
+    this.workoutS.updateWorkoutCategories(this.sCategory._id, this.sCategory, this.imageUpdateFile).subscribe(res => {
       if (res.status == true) {
         this.modalService.dismissAll();
         this.ngOnInit();
@@ -75,6 +79,8 @@ export class WorkoutComponent implements OnInit {
   editCategory(edit, i) {
     this.sCategory = this.categories[i];
     console.log(this.sCategory);
+    this.cateImage = this.sCategory.image;
+    console.log(this.cateImage);
     this.modalService.open(edit, { ariaLabelledBy: 'modal-basic-title', centered: true, windowClass: "dark-modal" });
   }
 
@@ -100,6 +106,20 @@ export class WorkoutComponent implements OnInit {
       reader.readAsDataURL(file);
       reader.onload = (event) => {
         this.imageUrl = reader.result;
+        console.log('image url === ', this.imageUrl);
+      };
+    }
+  }
+
+  onImageUpdateChange(file: File) {
+    console.log(file);
+    if (file) {
+      this.fileName = file.name;
+      this.imageUpdateFile = file;
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event) => {
+        this.imageUpdateUrl = reader.result;
         console.log('image url === ', this.imageUrl);
       };
     }

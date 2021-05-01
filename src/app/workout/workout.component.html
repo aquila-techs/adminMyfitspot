@@ -56,8 +56,8 @@
                 [src]="imageUrl" width="300" height="200" />
 
               <i *ngIf="!imageUrl" style="z-index: 2; color: #444;" class="fa fa-upload pointer"></i>
-              <span *ngIf="!imageUrl" style="z-index: 2; color: #444; font-weight: 20px;"
-                class="text-muted">Upload Feature Image</span>
+              <span *ngIf="!imageUrl" style="z-index: 2; color: #444; font-weight: 20px;" class="text-muted">Upload
+                Feature Image</span>
             </div>
           </button>
           <input type="file" name="banner" #fileImageInput (change)="onImageChange(fileImageInput.files[0])"
@@ -125,6 +125,25 @@
         <label for="videoUrl">Video Url</label>
         <input [(ngModel)]="sCategory.videoUrl" name="videoUrl" type="text" class="form-control margin" id="videoUrl"
           placeholder="Video Url" />
+      </div>
+      <div class="upload-btn-wrapper pointer">
+        <button style="padding: 0; border: 0; background: transparent;" class="btn1">
+          <div
+            style="flex-direction: column; border: 2px dashed #999; background-color: transparent; width: 200px; height: 100px; display: flex; justify-content: center; align-items: center;">
+            <img *ngIf="cateImage"
+              style="opacity: 0.7; z-index: 1; position: absolute; top: 0; bottom: 0; left: 0; right: 0"
+              src="{{enImageUrl}}{{cateImage}}" width="300" height="200" />
+            <img *ngIf="imageUpdateUrl"
+              style="opacity: 0.7; z-index: 1; position: absolute; top: 0; bottom: 0; left: 0; right: 0"
+              src="{{imageUpdateUrl}}" width="300" height="200" />
+
+            <i *ngIf="!imageUpdateUrl" style="z-index: 2; color: #444;" class="fa fa-upload pointer"></i>
+            <span *ngIf="!imageUpdateUrl" style="z-index: 2; color: #444; font-weight: 20px;" class="text-muted">Upload
+              Feature Image</span>
+          </div>
+        </button>
+        <input type="file" name="banner" #fileInput (change)="onImageUpdateChange(fileInput.files[0])"
+          class="custom-file-input" id="banner">
       </div>
     </form>
   </div>

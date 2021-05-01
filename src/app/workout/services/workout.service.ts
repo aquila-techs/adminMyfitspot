@@ -39,8 +39,22 @@ export class WorkoutService {
     return this.http.delete("/workout/categories/delete/" + param);
   }
 
-  updateWorkoutCategories(param, body): Observable<any> {
-    return this.http.put("/workout/categories/update/" + param, body);
+  updateWorkoutCategories(param, body, imageFile: File): Observable<any> {
+    console.log(body);
+    console.log(imageFile);
+    let formData = new FormData();
+    if (imageFile) {
+      formData.append("img", imageFile);
+    }
+    formData.append("name", body.name);
+    formData.append("slug", body.slug);
+    formData.append("description", body.description);
+    formData.append("videoUrl", body.videoUrl);
+    if (body.parentCategory) {
+      formData.append("parentCategory", body.parentCategory);
+    }
+    formData.append("categoryType", body.categoryType);
+    return this.http.put("/workout/categories/update/" + param, formData);
   }
 
   createWorkout(body, file: File): Observable<any> {

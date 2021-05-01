@@ -1,5 +1,6 @@
 .auth-wrapper .auth-box {
     opacity: 0.8;
+    width: 1000px;
 }
 
 a.text-info {

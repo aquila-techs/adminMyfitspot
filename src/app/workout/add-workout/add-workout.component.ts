@@ -4,7 +4,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { WorkoutService } from '../services/workout.service';
 import {
   NgbModal,
@@ -43,7 +43,7 @@ export class AddWorkoutComponent implements OnInit {
     timeLineName: []
   };
   env = environment.imgUrl;
-
+  addWorkoutForm: FormGroup;
   equipment = [
     'None',
     'Gluteband',
@@ -71,10 +71,15 @@ export class AddWorkoutComponent implements OnInit {
     private router: Router,
     private workoutS: WorkoutService,
     private modalService: NgbModal,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
+    this.addWorkoutForm = this.formBuilder.group({
+      nameEn: ['', [Validators.required]],
+      nameNl: ['', [Validators.required]]
+    })
     this.subscription = this.sharedService.getMessage().subscribe(
       (message) => {
         console.log(message);

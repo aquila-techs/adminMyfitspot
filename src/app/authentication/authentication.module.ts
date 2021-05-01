@@ -9,12 +9,14 @@ import { LockComponent } from './lock/lock.component';
 
 
 import { AuthenticationRoutes } from './authentication.routing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AuthenticationRoutes),
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   declarations: [
     NotfoundComponent,
