@@ -60,28 +60,22 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-sm-9">
-
           <div class="card radius">
             <div class="card-body radius">
-              <!-- <div class="margin"> -->
               <quill-editor [styles]="{height: '300px'}" [(ngModel)]="workout.descriptionEn"
                 placeholder="Description(EN)"></quill-editor>
-              <!-- </div> -->
-              <!-- <div>
-                                <quill-editor [styles]="{height: '300px'}" [(ngModel)]="workout.descriptionNl" placeholder="Description(Nl)"></quill-editor>
-                            </div> -->
             </div>
             <div class="card-body radius">
               <quill-editor [styles]="{height: '300px'}" [(ngModel)]="workout.descriptionNl"
                 placeholder="Description(Nl)"></quill-editor>
             </div>
-
           </div>
         </div>
         <div class="col-sm-3" style="background-color: white;height: 58em;">
-          <div>
+          <div class="row">
             <label class="mt-1" style="text-align: center !important;font-weight: bold;padding: 10px;">Timeline</label>
-            <button type="button" class="btn cus-btns w-10 radius mt-2" style="float: right;"
+            <input type="number" class="form-control mr-2 mt-2 timeLineInput" [(ngModel)]="workout.timeLineCount" />
+            <button type="button" class="btn cus-btns w-10 radius mt-2 mb-2 ml-2" style="float: right;"
               (click)="addRest()">Rest</button>
           </div>
           <table style="padding: 1rem;" class="table table-hover text-center">

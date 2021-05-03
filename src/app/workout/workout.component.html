@@ -11,10 +11,14 @@
         <input type="text" class="form-control radius" [(ngModel)]="workoutCategories.slug" id="slug" placeholder="Slug"
           name="slug" aria-describedby="slug">
       </div>
-      <div class="form-group">
-        <label>Description</label>
-        <textarea type="text" class="form-control radius" id="value" [(ngModel)]="workoutCategories.description"
-          name="description" aria-describedby="descirption"></textarea>
+      <div class="card radius form-group">
+        <!-- <label>Description</label> -->
+        <div class="card-body radius">
+          <quill-editor name="description" id="value" [styles]="{height: '120px'}"
+            [(ngModel)]="workoutCategories.description" placeholder="Description"></quill-editor>
+        </div>
+        <!-- <textarea type="text" class="form-control radius" id="value" [(ngModel)]="workoutCategories.description"
+          name="description" aria-describedby="descirption"></textarea> -->
       </div>
       <div class="form-group">
         <label>Video Url</label>
@@ -116,10 +120,11 @@
         <input [(ngModel)]="sCategory.slug" name="slug" type="text" class="form-control margin" id="slug"
           placeholder="Slug" />
       </div>
-      <div class="form-group">
-        <label for="slug">Description</label>
-        <input [(ngModel)]="sCategory.description" name="description" type="text" class="form-control margin"
-          id="description" placeholder="Description" />
+      <div class="card radius form-group">
+        <div class="card-body radius">
+          <quill-editor name="description" id="value" [styles]="{height: '120px'}" [(ngModel)]="sCategory.description"
+            placeholder="Description"></quill-editor>
+        </div>
       </div>
       <div class="form-group">
         <label for="videoUrl">Video Url</label>

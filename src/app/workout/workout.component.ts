@@ -42,12 +42,15 @@ export class WorkoutComponent implements OnInit {
           res.data[index].description = res.data[index].description == 'null' ? '' : res.data[index].description;
         });
         this.categories = res.data
+        console.log('categories ===> ',this.categories);
       }
     });
   }
 
   addCategory(form: NgForm) {
-    console.log(this.workoutCategories)
+    console.log(this.workoutCategories.description.slice(3, -4));
+    this.workoutCategories.description = this.workoutCategories.description.slice(3, -4)
+    console.log(this.workoutCategories.description);
     this.workoutS.createWorkOutCategory(this.workoutCategories, this.file, this.imageFile).subscribe(res => {
       if (res.status == true) {
         this.ngOnInit();
@@ -64,7 +67,10 @@ export class WorkoutComponent implements OnInit {
   }
 
   updateCategory() {
-    console.log(this.imageUpdateFile);
+    console.log(this.sCategory);
+    console.log(this.sCategory.description.slice(3, -4));
+    this.sCategory.description = this.sCategory.description.slice(3, -4)
+    console.log(this.sCategory.description);
     this.workoutS.updateWorkoutCategories(this.sCategory._id, this.sCategory, this.imageUpdateFile).subscribe(res => {
       if (res.status == true) {
         this.modalService.dismissAll();

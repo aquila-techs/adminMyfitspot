@@ -19,7 +19,7 @@ export class ModifyWorkoutComponent implements OnInit {
   workout = {
     nameEn: "", nameNl: "", workoutUrl: "", time: "", videoUrl: "", specification: '',
     difficulityLevel: "", categories: [], equipment: [], descriptionEn: "",
-    descriptionNl: "", pricing: "", timeLines: [], featureImage: {}, numberOfCalories: null
+    descriptionNl: "", pricing: "", timeLines: [], featureImage: {}, numberOfCalories: null, timeLineCount: null
   }
   equipment = ["None", "Gluteband", "Resistance Band", "Dumbell", "Barbell", "Rings", "Acces to gym"];
   difficulty = ["Beginner", "Intermediate", "Advanced", "Pro"];
@@ -59,6 +59,7 @@ export class ModifyWorkoutComponent implements OnInit {
         this.workout.descriptionNl = message.descriptionNl;
         this.workout.pricing = message.pricing;
         this.workout.timeLines = message.timeLines;
+        this.workout.timeLineCount = message.timeLineCount;
         this.workout.featureImage = message.featureImage === undefined ? {} : message.featureImage;
         console.log(this.workout);
         this.workout.categories.includes('Fit body') ? this.fitBody = true : this.fitBody = false;
@@ -103,6 +104,7 @@ export class ModifyWorkoutComponent implements OnInit {
     formData.append("nameNl", this.workout.nameNl);
     formData.append("workoutUrl", this.workout.workoutUrl);
     formData.append("time", this.workout.time);
+    formData.append("timeLineCount", this.workout.timeLineCount);
     formData.append("videoUrl", this.workout.videoUrl);
     formData.append("numberOfCalories", this.workout.numberOfCalories);
     formData.append("specification", this.workout.specification);

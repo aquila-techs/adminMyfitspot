@@ -76,8 +76,12 @@
           </div>
         </div>
         <div class="col-sm-3" style="background-color: white;height: 58em;">
-          <label class="mt-1" style="text-align: center !important;font-weight: bold;padding: 10px;">Timeline</label>
-          <button type="button" class="btn cus-btns w-10 radius mt-2" style="float: right;" (click)="addRest()">Rest</button>
+          <div class="row">
+            <label class="mt-1" style="text-align: center !important;font-weight: bold;padding: 10px;">Timeline</label>
+            <input type="number" class="form-control mr-2 mt-2 timeLineInput" [(ngModel)]="workout.timeLineCount" />
+            <button type="button" class="btn cus-btns w-10 radius mt-2 mb-2 ml-2" style="float: right;"
+              (click)="addRest()">Rest</button>
+          </div>
           <table class="table table-hover text-center">
             <tbody>
               <tr *ngFor="let m of workout.timeLines; let i = index">

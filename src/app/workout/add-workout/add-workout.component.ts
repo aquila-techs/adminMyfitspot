@@ -40,7 +40,8 @@ export class AddWorkoutComponent implements OnInit {
     excercises: [],
     pricing: '',
     timeLines: [],
-    timeLineName: []
+    timeLineName: [],
+    timeLineCount: null
   };
   env = environment.imgUrl;
   addWorkoutForm: FormGroup;

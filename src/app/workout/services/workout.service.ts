@@ -74,6 +74,7 @@ export class WorkoutService {
     formData.append("specification", body.specification);
     formData.append("sweatFactor", body.sweatFactor);
     formData.append("pricing", body.pricing);
+    formData.append("timeLineCount", body.timeLineCount);
     formData.append("categories", JSON.stringify(body['categories']));
     formData.append("equipment", JSON.stringify(body['equipment']));
     formData.append("excercises", JSON.stringify(body['excercises']));
