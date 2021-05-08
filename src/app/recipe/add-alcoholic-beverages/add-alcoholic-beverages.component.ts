@@ -1,25 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-import { Router } from "@angular/router";
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { ToastrService } from 'ngx-toastr';
 import { RecipeService } from '../services/recipe.service';
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-
 
 @Component({
-  selector: 'app-add-carbs',
-  templateUrl: './add-carbs.component.html',
-  styleUrls: ['./add-carbs.component.css']
+  selector: 'app-add-alcoholic-beverages',
+  templateUrl: './add-alcoholic-beverages.component.html',
+  styleUrls: ['./add-alcoholic-beverages.component.css']
 })
-export class AddCarbsComponent implements OnInit {
+export class AddAlcoholicBeveragesComponent implements OnInit {
 
   carb = {
     nameEn: "",
     nameNl: "",
     value: "",
-    type: "carb",
-    parentCategory: "",
+    type: "alcoholic-beverages",
+    parentCategory: "Alcoholic Beverages",
     productType: [],
     protein: null,
     carbs: null,
@@ -37,15 +36,16 @@ export class AddCarbsComponent implements OnInit {
   constructor(private modalService: NgbModal, private toastr: ToastrService, private router: Router, private recipeS: RecipeService) { }
 
   ngOnInit(): void {
-    this.recipeS.getAllCarbs().subscribe(res => {
+    this.recipeS.getAlAlcoholicBaverages().subscribe(res => {
       if (res.status == true) {
         this.carbs = res.data
+        console.log(this.carbs)
       }
     })
   }
 
   addCarb(form: NgForm) {
-    console.log(this.carb);
+    console.log(this.carb)
     this.recipeS.createIngredient(this.carb).subscribe(res => {
       if (res.status == true) {
         this.ngOnInit();
@@ -53,7 +53,7 @@ export class AddCarbsComponent implements OnInit {
         this.carb.productType = [];
         this.carb.parentCategory = '';
         this.carb.score = null;
-        this.toastr.success("Carb Added!", 'Success!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
+        this.toastr.success("Alcoholic Beverage!", 'Success!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
       } else {
         this.toastr.error(res.message, 'Oops!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
       }
@@ -83,6 +83,12 @@ export class AddCarbsComponent implements OnInit {
     console.log(this.carb.productType)
   }
 
+  update(edit, i) {
+    this.sCarb = this.carbs[i];
+    console.log(this.sCarb);
+    this.modalService.open(edit, { ariaLabelledBy: 'modal-basic-title', centered: true, windowClass: "dark-modal" });
+  }
+
   changeUpdate(e) {
     console.log(e);
     this.sCarb.parentCategory = e;
@@ -106,18 +112,11 @@ export class AddCarbsComponent implements OnInit {
     console.log(this.sCarb.productType)
   }
 
-  update(edit, i) {
-    this.sCarb = this.carbs[i];
-    console.log(this.sCarb);
-    this.modalService.open(edit, { ariaLabelledBy: 'modal-basic-title', centered: true, windowClass: "dark-modal" });
-  }
-
   updateCarb() {
-    console.log(this.sCarb);
     this.recipeS.updateIngredient(this.sCarb._id, this.sCarb).subscribe(res => {
       if (res.status == true) {
         this.modalService.dismissAll();
-        this.toastr.success("Fat Updated!", 'Success!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
+        this.toastr.success("Alcoholic Beverage Updated!", 'Success!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
       } else {
         this.toastr.error(res.message, 'Oops!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
       }
@@ -128,10 +127,11 @@ export class AddCarbsComponent implements OnInit {
     this.recipeS.deleteIngredient(carbId).subscribe(res => {
       if (res.status === true) {
         this.carbs.splice(i, 1);
-        this.toastr.success("Carb Deleted!", 'Success!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
+        this.toastr.success("Alcoholic Beverage Deleted!", 'Success!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
       } else {
         this.toastr.error(res.message, 'Oops!', { timeOut: 3000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
       }
     })
   }
+
 }

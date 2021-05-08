@@ -1,72 +1,269 @@
 <div class="row">
-    <div class="col-md-4">
-        <form #myForm="ngForm">
-            <div class="form-group">
-                <label>Name</label>
-                <input type="text" class="form-control radius margin" [(ngModel)]="fat.nameEn" id="nameEn" placeholder="English" name="nameEn" aria-describedby="nameEn" >
-                <input type="text" class="form-control radius" [(ngModel)]="fat.nameNl" id="nameNl" placeholder="Dutch" name="nameNl" aria-describedby="nameNl" >
-            </div>
-            <div class="form-group">
-                <label>Value</label>
-                <input type="text" class="form-control radius" id="value" [(ngModel)]="fat.value"  name="value" aria-describedby="value" >
-                <small class="text-muted">The “value" is the value of 1 gram of fat is equal to how many "KCal".</small>
-            </div>
-            <div class="form-group m-t-10">
-                <button type="button" class="btn cus-btns ml-auto radius" (click)="addFat(myForm)" >Add New Fat</button>
-            </div>
-        </form>
-    </div>
-    <div class="col-md-8">
-        <div class="scrollable table-responsive" style="height:500px;" [perfectScrollbar]="config">
-            <table class="table table-hover text-center">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Value</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let f of fats; let i=index">
-                      <td>{{ f?.nameEn }}</td>
-                      <td>{{f?.value }}</td>          
-                      <td>
-                        <i class="ti-pencil text-info m-r-10 pointer" (click)="update(edit,i)"></i>
-                        <i class="ti-trash text-danger pointer" (click)="deletefat(f._id,i)"></i></td>
-                    </tr>
-               </tbody>
-            </table>
+  <div class="col-md-4">
+    <form #myForm="ngForm">
+      <div class="form-group">
+        <label class="mr-sm-2" for="pc">Product Category</label>
+        <br />
+        <div class="form-check form-check-inline">
+          <div class="custom-control custom-checkbox">
+            <input [checked]="fat.productType.includes('vegan')" (click)="addProductCategory('vegan')" name="block"
+              class="form-control custom-control-input" id="b-1" type="checkbox" />
+            <label class="custom-control-label" for="b-1">Vegan</label>
+          </div>
         </div>
+        <div class="form-check form-check-inline">
+          <div class="custom-control custom-checkbox">
+            <input [checked]="fat.productType.includes('omni')" (click)="addProductCategory('omni')" name="block"
+              class="form-control custom-control-input" id="b-2" type="checkbox" />
+            <label class="custom-control-label" for="b-2">Omni</label>
+          </div>
+        </div>
+        <div class="form-check form-check-inline">
+          <div class="custom-control custom-checkbox">
+            <input [checked]="fat.productType.includes('vegetarian')" (click)="addProductCategory('vegetarian')"
+              name="block" class="form-control custom-control-input" id="b-3" type="checkbox" />
+            <label class="custom-control-label" for="b-3">Vegetarian</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="mr-sm-2" for="inlineFormCustomSelect">Parent Category</label>
+        <select (change)="change($event.target.value)" class="custom-select mr-sm-2 radius" id="inlineFormCustomSelect">
+          <option [selected]="!fat.parentCategory" value="">None</option>
+          <option value="Divers">Divers</option>
+          <option value="Savory snacks">Savory snacks</option>
+          <option value="Nuts & seeds">Nuts & seeds</option>
+          <option value="Oils & sauces">Oils & sauces</option>
+          <option value="Dairy">Dairy</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control radius margin" [(ngModel)]="fat.nameEn" id="nameEn" placeholder="English"
+          name="nameEn" aria-describedby="nameEn">
+        <input type="text" class="form-control radius" [(ngModel)]="fat.nameNl" id="nameNl" placeholder="Dutch"
+          name="nameNl" aria-describedby="nameNl">
+      </div>
+      <div class="form-group">
+        <label>Value</label>
+        <input type="text" class="form-control radius" id="value" [(ngModel)]="fat.value" name="value"
+          aria-describedby="value">
+        <small class="text-muted">The “value" is the value of 1 gram of fat is equal to how many "KCal".</small>
+      </div>
+      <div class="form-group">
+        <label>Total Amount</label>
+        <input readonly style="background-color: white;" type="text" value="100" class="form-control radius" id="Amount"
+          name="Amount" aria-describedby="Amount">
+      </div>
+      <div class="form-group">
+        <label>Protein</label>
+        <input type="number" [(ngModel)]="fat.protein" class="form-control radius" id="Amount" name="Amount"
+          aria-describedby="Amount">
+      </div>
+      <div class="form-group">
+        <label>Carbs</label>
+        <input type="number" [(ngModel)]="fat.carbs" class="form-control radius" id="Amount" name="Amount"
+          aria-describedby="Amount">
+      </div>
+      <div class="form-group">
+        <label>Sugar</label>
+        <input type="number" [(ngModel)]="fat.sugar" class="form-control radius" id="Amount" name="Amount"
+          aria-describedby="Amount">
+      </div>
+      <div class="form-group">
+        <label>Fiber</label>
+        <input type="number" [(ngModel)]="fat.fiber" class="form-control radius" id="Amount" name="Amount"
+          aria-describedby="Amount">
+      </div>
+      <div class="form-group">
+        <label>Fats</label>
+        <input type="number" [(ngModel)]="fat.fats" class="form-control radius" id="Amount" name="Amount"
+          aria-describedby="Amount">
+      </div>
+      <div class="form-group">
+        <label>Recomended (in g) Men</label>
+        <input type="number" [(ngModel)]="fat.recMen" class="form-control radius" id="Amount" name="Amount"
+          aria-describedby="Amount">
+      </div>
+      <div class="form-group">
+        <label>Recomended (in g) Women</label>
+        <input type="number" [(ngModel)]="fat.recWomen" class="form-control radius" id="Amount" name="Amount"
+          aria-describedby="Amount">
+      </div>
+      <div class="form-group">
+        <label>Image Url</label>
+        <input type="text" [(ngModel)]="fat.imageUrl" class="form-control radius" id="Amount" name="Amount"
+          aria-describedby="Amount">
+      </div>
+      <div class="form-group">
+        <label class="mr-sm-2" for="inlineFormCustomSelect">Score</label>
+        <select (change)="changeScore($event.target.value)" class="custom-select mr-sm-2 radius"
+          id="inlineFormCustomSelect">
+          <option [selected]="!fat.score" value="">None</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <div class="form-group m-t-10">
+        <button type="button" class="btn cus-btns ml-auto radius" (click)="addFat(myForm)">Add New Fat</button>
+      </div>
+    </form>
+  </div>
+
+
+  <div class="col-md-8">
+    <div class="scrollable table-responsive" style="height:500px;" [perfectScrollbar]="config">
+      <table class="table table-hover text-center">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Value</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let f of fats; let i=index">
+            <td>{{ f?.nameEn }}</td>
+            <td>{{f?.value }}</td>
+            <td>
+              <i class="ti-pencil text-info m-r-10 pointer" (click)="update(edit,i)"></i>
+              <i class="ti-trash text-danger pointer" (click)="deletefat(f._id,i)"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>
 
 <ng-template #edit let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title">Edit Fat</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form>
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input [(ngModel)]="sfat.nameEn" name="nameEn" type="text" class="form-control margin" id="nameEn" placeholder="English" />
-          <input [(ngModel)]="sfat.nameNl" name="nameNl" type="text" class="form-control" id="nameNl" placeholder="Dutch" />
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Fat</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label class="mr-sm-2" for="pc">Product Category</label>
+        <br />
+        <div class="form-check form-check-inline">
+          <div class="custom-control custom-checkbox">
+            <input [checked]="sfat.productType.includes('vegan')" (click)="addProductCategoryUpdate('vegan')"
+              name="block" class="form-control custom-control-input" id="c-1" type="checkbox" />
+            <label class="custom-control-label" for="c-1">Vegan</label>
+          </div>
         </div>
-        <div class="form-group">
-            <label>Value</label>
-            <input type="text" class="form-control radius" id="value" [(ngModel)]="sfat.value"  name="value" aria-describedby="value" >
-            <small class="text-muted">The “value" is the value of 1 gram of vegetable is equal to how many "KCal".</small>
+        <div class="form-check form-check-inline">
+          <div class="custom-control custom-checkbox">
+            <input [checked]="sfat.productType.includes('omni')" (click)="addProductCategoryUpdate('omni')" name="block"
+              class="form-control custom-control-input" id="c-2" type="checkbox" />
+            <label class="custom-control-label" for="c-2">Omni</label>
+          </div>
         </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">
-        Close
-      </button>
-      <button (click)="updateFat()" type="button" class="btn btn-info">
-        Save
-      </button>
-    </div>
-  </ng-template>
+        <div class="form-check form-check-inline">
+          <div class="custom-control custom-checkbox">
+            <input [checked]="sfat.productType.includes('vegetarian')" (click)="addProductCategoryUpdate('vegetarian')"
+              name="block" class="form-control custom-control-input" id="c-3" type="checkbox" />
+            <label class="custom-control-label" for="c-3">Vegetarian</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="mr-sm-2" for="inlineFormCustomSelect">Parent Category</label>
+        <select (change)="changeUpdate($event.target.value)" class="custom-select mr-sm-2 radius"
+          id="inlineFormCustomSelect">
+          <option [selected]="!sfat.parentCategory" value="">None</option>
+          <option [selected]="sfat.parentCategory === 'Divers'" value="Divers">Divers
+          </option>
+          <option [selected]="sfat.parentCategory === 'Savory snacks'" value="Savory snacks">Savory snacks</option>
+          <option [selected]="sfat.parentCategory === 'Nuts & seeds'" value="Nuts & seeds">Nuts & seeds</option>
+          <option [selected]="sfat.parentCategory === 'Oils & sauces'" value="Oils & sauces">Oils & sauces
+          </option>
+          <option [selected]="sfat.parentCategory === 'Dairy'" value="Dairy">Dairy</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input [(ngModel)]="sfat.nameEn" name="nameEn" type="text" class="form-control margin" id="nameEn"
+          placeholder="English" />
+        <input [(ngModel)]="sfat.nameNl" name="nameNl" type="text" class="form-control" id="nameNl"
+          placeholder="Dutch" />
+      </div>
+      <div class="form-group">
+        <label>Value</label>
+        <input type="text" class="form-control radius" id="value" [(ngModel)]="sfat.value" name="value"
+          aria-describedby="value">
+        <small class="text-muted">The “value" is the value of 1 gram of vegetable is equal to how many "KCal".</small>
+      </div>
+      <div class="form-group">
+        <label>Total Amount</label>
+        <input readonly style="background-color: white;" type="text" value="100" class="form-control radius" id="Amount"
+          name="Amount" aria-describedby="Amount">
+      </div>
+      <div class="form-group">
+        <label>Protein</label>
+        <input type="number" [(ngModel)]="sfat.protein" class="form-control radius" id="Protein" name="Protein"
+          aria-describedby="Protein">
+      </div>
+      <div class="form-group">
+        <label>Carbs</label>
+        <input type="number" [(ngModel)]="sfat.carbs" class="form-control radius" id="Carbs" name="Carbs"
+          aria-describedby="Carbs">
+      </div>
+      <div class="form-group">
+        <label>Sugar</label>
+        <input type="number" [(ngModel)]="sfat.sugar" class="form-control radius" id="Sugar" name="Sugar"
+          aria-describedby="Sugar">
+      </div>
+      <div class="form-group">
+        <label>Fiber</label>
+        <input type="number" [(ngModel)]="sfat.fiber" class="form-control radius" id="Fiber" name="Fiber"
+          aria-describedby="Fiber">
+      </div>
+      <div class="form-group">
+        <label>Fats</label>
+        <input type="number" [(ngModel)]="sfat.fats" class="form-control radius" id="Fats" name="Fats"
+          aria-describedby="Fats">
+      </div>
+      <div class="form-group">
+        <label>Recomended (in g) Men</label>
+        <input type="number" [(ngModel)]="sfat.recommendMen" class="form-control radius" id="Men" name="Men"
+          aria-describedby="Men">
+      </div>
+      <div class="form-group">
+        <label>Recomended (in g) Women</label>
+        <input type="number" [(ngModel)]="sfat.recommendWomen" class="form-control radius" id="Women" name="Women"
+          aria-describedby="Women">
+      </div>
+      <div class="form-group">
+        <label>Image Url</label>
+        <input type="text" [(ngModel)]="sfat.imageUrl" class="form-control radius" id="Url" name="Url"
+          aria-describedby="Url">
+      </div>
+      <div class="form-group">
+        <label class="mr-sm-2" for="Score">Score</label>
+        <select (change)="changeScoreUpdate($event.target.value)" class="custom-select mr-sm-2 radius" id="Score">
+          <option [selected]="!sfat.score" value="">None</option>
+          <option [selected]="sfat.score === 1" value="1">1</option>
+          <option [selected]="sfat.score === 2" value="2">2</option>
+          <option [selected]="sfat.score === 3" value="3">3</option>
+          <option [selected]="sfat.score === 4" value="4">4</option>
+          <option [selected]="sfat.score === 5" value="5">5</option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">
+      Close
+    </button>
+    <button (click)="updateFat()" type="button" class="btn btn-info">
+      Save
+    </button>
+  </div>
+</ng-template>

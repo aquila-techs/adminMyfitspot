@@ -7,6 +7,7 @@ import { AddFruitComponent } from './add-fruit/add-fruit.component';
 import { AddHerbsComponent } from './add-herbs/add-herbs.component';
 import { AddProteinComponent } from './add-protein/add-protein.component';
 import { AddVegetablesComponent } from './add-vegetables/add-vegetables.component';
+import { AddAlcoholicBeveragesComponent } from './add-alcoholic-beverages/add-alcoholic-beverages.component';
 
 const routes: Routes = [
   {
@@ -89,7 +90,18 @@ const routes: Routes = [
           ]
         }
       },
-   ]  
+      {
+        path: 'addalcoholicbeverages',
+        component: AddAlcoholicBeveragesComponent,
+        data: {
+          title: 'Add Alcoholic Beverages',
+          urls: [
+            { title: 'Dashboard', url: '/' },
+            { title: 'Add Alcoholic Beverages' }
+          ]
+        }
+      },
+   ]
  }
 ];
 

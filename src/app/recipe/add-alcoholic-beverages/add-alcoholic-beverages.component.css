@@ -1,0 +1,15 @@
+.radius{
+  border-radius: 5px;
+}
+
+.pointer{
+  cursor:pointer;
+}
+
+.margin{
+  margin-bottom: 5px;
+}
+.cus-btns{
+  background-color: #68BC45;
+  color: #ffffff;
+}

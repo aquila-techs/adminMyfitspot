@@ -14,10 +14,11 @@ import { AddVegetablesComponent } from './add-vegetables/add-vegetables.componen
 import { AddCarbsComponent } from './add-carbs/add-carbs.component';
 import { AddFatsComponent } from './add-fats/add-fats.component';
 import { AddHerbsComponent } from './add-herbs/add-herbs.component';
+import { AddAlcoholicBeveragesComponent } from './add-alcoholic-beverages/add-alcoholic-beverages.component';
 
 
 @NgModule({
-  declarations: [AddRecipeComponent, AddProteinComponent, AddFruitComponent, AddVegetablesComponent, AddCarbsComponent, AddFatsComponent, AddHerbsComponent],
+  declarations: [AddRecipeComponent, AddProteinComponent, AddFruitComponent, AddVegetablesComponent, AddCarbsComponent, AddFatsComponent, AddHerbsComponent, AddAlcoholicBeveragesComponent],
   imports: [
     CommonModule,
     FormsModule,

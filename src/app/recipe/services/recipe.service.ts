@@ -8,12 +8,15 @@ import { Observable } from 'rxjs';
 export class RecipeService {
 
   constructor(private http: HttpClient) { }
-  
+
   createIngredient(body): Observable<any> {
     return this.http.post("/ingredient/create", body);
   }
   getAllCarbs(): Observable<any> {
     return this.http.get("/ingredient/all/carbs");
+  }
+  getAlAlcoholicBaverages(): Observable<any> {
+    return this.http.get("/ingredient/all/alcoholicbeverages");
   }
   getAllfats(): Observable<any> {
     return this.http.get("/ingredient/all/fats");

@@ -5,7 +5,7 @@ export const ROUTES: RouteInfo[] = [
         path: '/dashboard/classic',
         title: 'Dashboard',
         icon: 'mdi mdi-view-dashboard',
-        class: '', //has-arrow 
+        class: '', //has-arrow
         extralink: false,
         submenu: []
     },
@@ -98,21 +98,21 @@ export const ROUTES: RouteInfo[] = [
                 extralink: false,
                 submenu: []
             },
-            // {
-            //     path: '/recipes/addrecipe',
-            //     title: 'Add Recipe',
-            //     icon: 'mdi mdi-adjust',
-            //     class: '',
-            //     extralink: false,
-            //     submenu: []
-            // },
+            {
+                path: '/recipes/addalcoholicbeverages',
+                title: 'Add Alcoholic Beverages',
+                icon: 'mdi mdi-adjust',
+                class: '',
+                extralink: false,
+                submenu: []
+            },
         ]
     },
     {
         path: '',
         title: 'WorkOut',
         icon: 'mdi mdi-dumbbell',
-        class: 'has-arrow', //has-arrow 
+        class: 'has-arrow', //has-arrow
         extralink: false,
         submenu: [
             {
@@ -257,7 +257,7 @@ export const ROUTES: RouteInfo[] = [
         path: '',
         title: 'Product',
         icon: 'mdi mdi-food-variant',
-        class: 'has-arrow', //has-arrow 
+        class: 'has-arrow', //has-arrow
         extralink: false,
         submenu: [
             {
@@ -274,7 +274,7 @@ export const ROUTES: RouteInfo[] = [
     //     path: '/profile',
     //     title: 'Profile',
     //     icon: 'mdi mdi-account-network',
-    //     class: '', //has-arrow 
+    //     class: '', //has-arrow
     //     extralink: false,
     //     submenu:[]
     // }
