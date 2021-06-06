@@ -38,6 +38,7 @@ export class ModifyWorkoutComponent implements OnInit {
   fatBurning = false;
   imageForm: FormGroup;
   timeLineCount;
+  restCount;
 
   public config: PerfectScrollbarConfigInterface = {};
 
@@ -96,7 +97,7 @@ export class ModifyWorkoutComponent implements OnInit {
   }
 
   modifyWorkout() {
-    // console.log(this.workout);
+    console.log(typeof(this.workout.timeLineCount));
     const formData = new FormData();
     formData.append("img", this.file);
     formData.append("id", this.workout['_id']);
@@ -174,7 +175,7 @@ export class ModifyWorkoutComponent implements OnInit {
       description: "rest",
       slug: "rest",
       videoUrl: "",
-      count: 0,
+      count: this.restCount,
       isComplete: false,
       rest: true,
     }
@@ -191,7 +192,7 @@ export class ModifyWorkoutComponent implements OnInit {
       description: item.description,
       slug: item.slug,
       videoUrl: item.videoUrl,
-      count: Number(this.timeLineCount),
+      count: this.timeLineCount,
       isComplete: false,
       rest: false
     }

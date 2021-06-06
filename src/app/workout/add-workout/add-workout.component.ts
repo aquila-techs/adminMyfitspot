@@ -65,6 +65,7 @@ export class AddWorkoutComponent implements OnInit {
   musclesChild = [] as any;
   subscription: Subscription;
   timeLineCount;
+  restCount;
 
   public config: PerfectScrollbarConfigInterface = {};
   constructor(
@@ -235,7 +236,7 @@ export class AddWorkoutComponent implements OnInit {
       description: "rest",
       slug: "rest",
       videoUrl: "",
-      count: 0,
+      count: this.restCount,
       isComplete: false,
       rest: true,
     }
@@ -251,7 +252,7 @@ export class AddWorkoutComponent implements OnInit {
       description: item.description,
       slug: item.slug,
       videoUrl: item.videoUrl,
-      count: Number(this.timeLineCount),
+      count: this.timeLineCount,
       isComplete: false,
       rest: false
     }

@@ -56,3 +56,7 @@ th.sticky-header-sub {
     z-index: 5;
 }
 
+.modal {
+  max-width: 750px !important;
+}
+

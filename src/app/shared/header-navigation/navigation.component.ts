@@ -88,6 +88,11 @@ export class NavigationComponent implements AfterViewInit {
     }
   ];
 
+  goToProfile(){
+    console.log('profile');
+    this.router.navigate(['/profile']);
+  }
+
   logOut() {
     this.AuthHelperService.logOut();
     this.router.navigate(['/login']);

@@ -48,8 +48,7 @@ export class WorkoutComponent implements OnInit {
   }
 
   addCategory(form: NgForm) {
-    console.log(this.workoutCategories.description.slice(3, -4));
-    this.workoutCategories.description = this.workoutCategories.description.slice(3, -4)
+    console.log(this.workoutCategories.description);
     console.log(this.workoutCategories.description);
     this.workoutS.createWorkOutCategory(this.workoutCategories, this.file, this.imageFile).subscribe(res => {
       if (res.status == true) {
@@ -68,8 +67,6 @@ export class WorkoutComponent implements OnInit {
 
   updateCategory() {
     console.log(this.sCategory);
-    console.log(this.sCategory.description.slice(3, -4));
-    this.sCategory.description = this.sCategory.description.slice(3, -4)
     console.log(this.sCategory.description);
     this.workoutS.updateWorkoutCategories(this.sCategory._id, this.sCategory, this.imageUpdateFile).subscribe(res => {
       if (res.status == true) {
