@@ -1,5 +1,5 @@
 import { AuthHelperService } from './../../services/authHelper.service';
-import { Component, AfterViewInit, EventEmitter, Output } from '@angular/core';
+import { Component, AfterViewInit, EventEmitter, Output, OnInit } from '@angular/core';
 import {
   NgbModal,
   ModalDismissReasons,
@@ -9,20 +9,58 @@ import {
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { Router } from '@angular/router';
 
+import { Subscription } from 'rxjs';
+import { ProfileService } from 'src/app/profile/services/profile.service';
+import { environment } from 'src/environments/environment';
+
+
 declare var $: any;
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html'
 })
-export class NavigationComponent implements AfterViewInit {
+export class NavigationComponent implements OnInit, AfterViewInit {
+
+  imageChangeSubscription: Subscription;
+
   @Output() toggleSidebar = new EventEmitter<void>();
 
   public config: PerfectScrollbarConfigInterface = {};
 
   public showSearch = false;
 
-  constructor(private modalService: NgbModal ,private AuthHelperService:AuthHelperService , private router:Router) {}
+  constructor(
+    private modalService: NgbModal,
+    private AuthHelperService: AuthHelperService,
+    private router: Router,
+    private profileService: ProfileService
+  ) {
+    // this.imageChangeSubscription = this.profileService.getImageChangeEvent().subscribe(() => {
+    //   console.log('header function call')
+    // })
+    if (this.profileService.subsVar == undefined) {
+      this.profileService.subsVar = this.profileService.invokeFirstComponentFunction.subscribe(() => {
+        console.log('header function call')
+      });
+    }
+   }
+  enImageUrl = environment.imgUrl;
+  profileImageUrl = '';
+  name = '';
+  ngOnInit() {
+    console.log('header ngOnInit')
+    this.profileService.getUserProfile().subscribe(
+      (data: any) => {
+        console.log('profile data in header',data)
+        this.name = data.name;
+        if(data.profilePic) {
+          this.profileImageUrl = `${this.enImageUrl}${data.profilePic}`;
+          console.log('profile image url in header', this.profileImageUrl)
+          console.log(this.profileImageUrl);
+        }
+      })
+  }
 
   // This is for Notifications
   notifications: Object[] = [
@@ -88,7 +126,7 @@ export class NavigationComponent implements AfterViewInit {
     }
   ];
 
-  goToProfile(){
+  goToProfile() {
     console.log('profile');
     this.router.navigate(['/profile']);
   }
@@ -98,5 +136,8 @@ export class NavigationComponent implements AfterViewInit {
     this.router.navigate(['/login']);
   }
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    console.log('header after view init');
+
+  }
 }

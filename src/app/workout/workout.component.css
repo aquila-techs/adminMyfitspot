@@ -56,7 +56,24 @@ th.sticky-header-sub {
     z-index: 5;
 }
 
-.modal {
-  max-width: 750px !important;
+.modal.modal-wide .modal-dialog {
+  width: 90%;
 }
+.modal-wide .modal-body {
+  overflow-y: auto;
+}
+
+/* .modal-dialog{
+  width: 80%;
+  margin: auto;
+}
+
+.modal-lg {
+  max-width: 80% !important;
+}
+
+.modal .modal-body{
+  max-width: 80% !important;
+  overflow-y: auto;
+} */
 

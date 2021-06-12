@@ -87,7 +87,7 @@ export class AddVegetablesComponent implements OnInit {
   update(edit, i) {
     this.sVegetable = this.vegetables[i];
     console.log(this.sVegetable);
-    this.modalService.open(edit, { ariaLabelledBy: 'modal-basic-title', centered: true, windowClass: "dark-modal" });
+    this.modalService.open(edit, { ariaLabelledBy: 'modal-basic-title', size: 'lg', centered: true, windowClass: "dark-modal" });
   }
 
   updateVegetable() {

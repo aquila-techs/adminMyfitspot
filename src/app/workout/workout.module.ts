@@ -10,7 +10,7 @@ import { WorkoutComponent } from './workout.component';
 import { AddWorkoutComponent } from './add-workout/add-workout.component';
 import { AllWorkoutComponent } from './all-workout/all-workout.component';
 import { AccordionModule } from '@syncfusion/ej2-angular-navigations';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';       
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { QuillModule } from 'ngx-quill';
@@ -32,6 +32,7 @@ import { ModifyWorkoutComponent } from './modify-workout/modify-workout.componen
     ReactiveFormsModule,
     NgMultiSelectDropDownModule,
     QuillModule.forRoot({
+
     }),
     // PrimePartsModule
   ],

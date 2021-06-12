@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileService } from './services/profile.service';
 
 
 @NgModule({
@@ -16,6 +16,9 @@ import { ProfileComponent } from './profile/profile.component';
     ReactiveFormsModule,
     NgbModule,
     ProfileRoutingModule
+  ],
+  providers: [
+    ProfileService
   ]
 })
 export class ProfileModule { }

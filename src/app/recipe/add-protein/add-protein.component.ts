@@ -86,7 +86,7 @@ export class AddProteinComponent implements OnInit {
   update(edit, i) {
     this.sProtein = this.proteins[i];
     console.log(this.sProtein);
-    this.modalService.open(edit, { ariaLabelledBy: 'modal-basic-title', centered: true, windowClass: "dark-modal" });
+    this.modalService.open(edit, { ariaLabelledBy: 'modal-basic-title', size: 'lg', centered: true, windowClass: "dark-modal" });
   }
 
   changeUpdate(e) {

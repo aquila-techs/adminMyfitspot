@@ -86,7 +86,7 @@ export class AddAlcoholicBeveragesComponent implements OnInit {
   update(edit, i) {
     this.sCarb = this.carbs[i];
     console.log(this.sCarb);
-    this.modalService.open(edit, { ariaLabelledBy: 'modal-basic-title', centered: true, windowClass: "dark-modal" });
+    this.modalService.open(edit, { ariaLabelledBy: 'modal-basic-title', size: 'lg', centered: true, windowClass: "dark-modal" });
   }
 
   changeUpdate(e) {

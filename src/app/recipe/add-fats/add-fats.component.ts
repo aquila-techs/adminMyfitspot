@@ -87,7 +87,7 @@ export class AddFatsComponent implements OnInit {
   update(edit, i) {
     this.sfat = this.fats[i];
     console.log(this.sfat);
-    this.modalService.open(edit, { ariaLabelledBy: 'modal-basic-title', centered: true, windowClass: "dark-modal" });
+    this.modalService.open(edit, { ariaLabelledBy: 'modal-basic-title', centered: true, size: 'lg', windowClass: "dark-modal" });
   }
 
   changeUpdate(e) {

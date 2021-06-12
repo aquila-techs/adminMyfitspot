@@ -86,7 +86,7 @@ export class AddHerbsComponent implements OnInit {
   update(edit, i) {
     this.sherb = this.herbs[i];
     // console.log(this.sProtein);
-    this.modalService.open(edit, { ariaLabelledBy: 'modal-basic-title', centered: true, windowClass: "dark-modal" });
+    this.modalService.open(edit, { ariaLabelledBy: 'modal-basic-title', size: 'lg', centered: true, windowClass: "dark-modal" });
   }
 
   changeUpdate(e) {

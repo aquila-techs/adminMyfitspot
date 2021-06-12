@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { WorkoutService } from './services/workout.service';
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { environment } from 'src/environments/environment';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-workout',
@@ -28,6 +29,17 @@ export class WorkoutComponent implements OnInit {
   cateImage;
 
   public config: PerfectScrollbarConfigInterface = {};
+
+  modules = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+      ['blockquote', 'code-block'],
+
+      [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+                        // link and image, video
+    ]
+  };
+
   constructor(private modalService: NgbModal, private toastr: ToastrService,
     private router: Router, private workoutS: WorkoutService, private activatedRoute: ActivatedRoute) {
     this.workoutCategories.categoryType = this.activatedRoute.snapshot.url[0].path
@@ -84,7 +96,8 @@ export class WorkoutComponent implements OnInit {
     console.log(this.sCategory);
     this.cateImage = this.sCategory.image;
     console.log(this.cateImage);
-    this.modalService.open(edit, { ariaLabelledBy: 'modal-basic-title', centered: true, windowClass: "dark-modal" });
+    // assign dynamic properties to the modal from here
+    this.modalService.open(edit, { ariaLabelledBy: 'modal-basic-title',size: 'lg', centered: true, windowClass: "dark-modal" });
   }
 
   deleteCategory(id, i) {

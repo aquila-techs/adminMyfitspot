@@ -59,14 +59,17 @@ export class ProfileComponent implements OnInit {
       reader.readAsDataURL(file);
       reader.onload = event => {
         this.imageUrl = reader.result;
-        console.log(this.imageUrl);
+        //console.log(this.imageUrl);
       };
       const formData = new FormData();
       formData.append("profilePic", this.file);
       this.profileService.updateProfilePic(formData).subscribe(
         (data) => {
-          console.log(data);
+          //console.log(data);
+          this.profileService.sendImageChangeEvent();
+          this.profileService.onFirstComponentLoad();
           this.toastr.success("Profile Picture Updated!", 'Success!', { timeOut: 2000, closeButton: true, progressBar: true, progressAnimation: 'decreasing' });
+          window.location.reload()
         },
         (error) => {
           console.log(error);
